@@ -15,6 +15,7 @@
 		9FEED99F26D8D1D4000819EA /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED99E26D8D1D4000819EA /* HeadlinesUITests.swift */; };
 		9FEED9AE26D8EB9A000819EA /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */; };
 		9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9B326D8EC18000819EA /* RealmSwift */; };
+		9FEED9C326D8F1F3000819EA /* HeadlinesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */; };
 		9FEED9C426D8F1F3000819EA /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9C226D8F1F3000819EA /* Article.swift */; };
 		9FEED9CF26D8F986000819EA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9CE26D8F986000819EA /* Realm */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		9FEED99A26D8D1D4000819EA /* HeadlinesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadlinesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FEED99E26D8D1D4000819EA /* HeadlinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesUITests.swift; sourceTree = "<group>"; };
 		9FEED9A026D8D1D4000819EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesError.swift; sourceTree = "<group>"; };
 		9FEED9C226D8F1F3000819EA /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 		9FEED9C026D8F1F3000819EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */,
 				9FEED9C226D8F1F3000819EA /* Article.swift */,
 			);
 			path = Model;
@@ -296,6 +299,7 @@
 				9FEED9C426D8F1F3000819EA /* Article.swift in Sources */,
 				9FEED98426D8D1CE000819EA /* ContentView.swift in Sources */,
 				9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */,
+				9FEED9C326D8F1F3000819EA /* HeadlinesError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
