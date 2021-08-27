@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FBF795D26D91330003EAD49 /* HeadlineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF795C26D91330003EAD49 /* HeadlineResponse.swift */; };
 		9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */; };
 		9FEED98426D8D1CE000819EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98326D8D1CE000819EA /* ContentView.swift */; };
 		9FEED98626D8D1D4000819EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEED98526D8D1D4000819EA /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FBF795C26D91330003EAD49 /* HeadlineResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlineResponse.swift; sourceTree = "<group>"; };
 		9FEED97E26D8D1CE000819EA /* Headlines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesApp.swift; sourceTree = "<group>"; };
 		9FEED98326D8D1CE000819EA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */,
+				9FBF795C26D91330003EAD49 /* HeadlineResponse.swift */,
 				9FEED9C226D8F1F3000819EA /* Article.swift */,
 			);
 			path = Model;
@@ -299,6 +302,7 @@
 				9FEED9C426D8F1F3000819EA /* Article.swift in Sources */,
 				9FEED98426D8D1CE000819EA /* ContentView.swift in Sources */,
 				9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */,
+				9FBF795D26D91330003EAD49 /* HeadlineResponse.swift in Sources */,
 				9FEED9C326D8F1F3000819EA /* HeadlinesError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
