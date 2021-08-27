@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		9FEED98926D8D1D4000819EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEED98826D8D1D4000819EA /* Preview Assets.xcassets */; };
 		9FEED99426D8D1D4000819EA /* HeadlinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED99326D8D1D4000819EA /* HeadlinesTests.swift */; };
 		9FEED99F26D8D1D4000819EA /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED99E26D8D1D4000819EA /* HeadlinesUITests.swift */; };
+		9FEED9AE26D8EB9A000819EA /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */; };
+		9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9B326D8EC18000819EA /* RealmSwift */; };
+		9FEED9CF26D8F986000819EA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9CE26D8F986000819EA /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FEED9CF26D8F986000819EA /* Realm in Frameworks */,
+				9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */,
+				9FEED9AE26D8EB9A000819EA /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +85,7 @@
 				9FEED99226D8D1D4000819EA /* HeadlinesTests */,
 				9FEED99D26D8D1D4000819EA /* HeadlinesUITests */,
 				9FEED97F26D8D1CE000819EA /* Products */,
+				9FEED9C526D8F33E000819EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +137,13 @@
 			path = HeadlinesUITests;
 			sourceTree = "<group>";
 		};
+		9FEED9C526D8F33E000819EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +160,11 @@
 			dependencies = (
 			);
 			name = Headlines;
+			packageProductDependencies = (
+				9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */,
+				9FEED9B326D8EC18000819EA /* RealmSwift */,
+				9FEED9CE26D8F986000819EA /* Realm */,
+			);
 			productName = Headlines;
 			productReference = 9FEED97E26D8D1CE000819EA /* Headlines.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +236,10 @@
 				Base,
 			);
 			mainGroup = 9FEED97526D8D1CE000819EA;
+			packageReferences = (
+				9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+				9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 9FEED97F26D8D1CE000819EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -580,6 +603,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
+		9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.13.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+		9FEED9B326D8EC18000819EA /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		9FEED9CE26D8F986000819EA /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9FEED97626D8D1CE000819EA /* Project object */;
 }
