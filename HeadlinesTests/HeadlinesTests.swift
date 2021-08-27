@@ -10,24 +10,29 @@ import XCTest
 
 class HeadlinesTests: XCTestCase {
 
-  override func setUpWithError() throws {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+  func test_article_decodes_from_json_correctly_and_strips_html() throws {
+    let stub = Bundle(for: Self.self).bundlePath + "/headline_stub.json"
+    let jsonData = try String(contentsOfFile: stub).data(using: .unicode)!
+    let response = try JSONDecoder().decode(HeadlineResponse.self,
+                                            from: jsonData)
+
+    // Realm objects have a custom Equatable method.
+    // Thus, we need to manually check each property.
+    let parsed = response.articles[0]
+    let correct = MockArticle.articleOne
+    XCTAssertEqual(parsed.isFavourite,
+                   correct.isFavourite)
+    XCTAssertEqual(parsed.body,
+                   correct.body)
+    XCTAssertEqual(parsed.headline,
+                   correct.headline)
+    XCTAssertEqual(parsed.published,
+                   correct.published)
+    XCTAssertEqual(parsed.rawImageURL,
+                   correct.rawImageURL)
   }
 
-  override func tearDownWithError() throws {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-  }
-
-  func testExample() throws {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-  }
-
-  func testPerformanceExample() throws {
-    // This is an example of a performance test case.
-    self.measure {
-      // Put the code you want to measure the time of here.
-    }
-  }
-
+/* TODO: If I had more time I would add performance tests for larger JSON file
+   de-serialization.
+*/
 }
