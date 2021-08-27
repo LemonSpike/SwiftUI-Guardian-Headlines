@@ -1,0 +1,48 @@
+{
+  "response": {
+    "status": "ok",
+    "userTier": "developer",
+    "total": 77463,
+    "startIndex": 1,
+    "pageSize": 10,
+    "currentPage": 1,
+    "pages": 7747,
+    "orderBy": "relevance",
+    "results": [
+      {
+        "id": "politics/2021/jul/01/rishi-sunak-to-announce-15bn-green-finance-plan",
+        "type": "article",
+        "sectionId": "politics",
+        "sectionName": "Politics",
+        "webPublicationDate": "2021-06-30T23:01:51Z",
+        "webTitle": "Rishi Sunak to announce £15bn green finance plan",
+        "webUrl": "https://www.theguardian.com/politics/2021/jul/01/rishi-sunak-to-announce-15bn-green-finance-plan",
+        "apiUrl": "https://content.guardianapis.com/politics/2021/jul/01/rishi-sunak-to-announce-15bn-green-finance-plan",
+        "fields": {
+          "main": "<figure class=\"element element-image\" data-media-id=\"e1526d226af53c8ed55d50fda12e8ba0776c5328\"> <img src=\"https://media.guim.co.uk/e1526d226af53c8ed55d50fda12e8ba0776c5328/0_123_3500_2101/1000.jpg\" alt=\"Rishi Sunak\" width=\"1000\" height=\"600\" class=\"gu-image\" /> <figcaption> <span class=\"element-image__caption\">Rishi Sunak will address financiers at a speech at Mansion House in the City of London.</span> <span class=\"element-image__credit\">Photograph: Simon Dawson/Reuters</span> </figcaption> </figure>",
+          "body": "<p>Rishi Sunak will announce plans to transform the City of London into a hub for green finance on Thursday as the government pushes to boost its competitiveness on the global stage after Brexit.</p> <p>The chancellor is expected to use his first speech to City financiers at the annual Mansion House address to announce details of a £15bn UK programme of government bond issuance, with the proceeds being spent on environmentally friendly projects.</p> <p>Aiming to turn Britain into a world leader for low-carbon financial services, Sunak will also launch a separate green savings bond for UK consumers, which he will say is to be used to help fund infrastructure schemes and create more green jobs across the UK.</p> <p>The green savings bonds will be available through National Savings &amp; Investments (NS&amp;I), offering consumers an opportunity to support green projects while receiving a fixed rate on their savings over a three-year term. The state-owned savings bank will launch the bonds later this year, with a minimum investment of £100 and a maximum limit of £100,000 per person.</p> <p>Although state spending is not dependent on the government raising funding from investors for specific projects, the chancellor will say the money raised from selling the two green bond issuances will help to finance low-carbon schemes such as zero-emissions buses, offshore wind, and investments to boost biodiversity and natural resources such as tree planting.</p> <p>Bridget Phillipson, shadow chief secretary to the Treasury, said there was a danger that the government’s green bonds scheme was “all talk and no action” and would stand as another legacy of ministers doing too little to address the climate emergency.</p> <p>“We need far more details and a watertight guarantee that these bonds are spent properly on the green jobs and initiatives that will curb climate breakdown,” she said.</p> <p>It comes as ministers prepare to host the COP2 climate conference in Glasgow later this year. As part of the green bond programme, the government will report on the social benefits of the projects, so that investors will have data on the number of jobs created and businesses or households who have benefited.</p> <p>The Treasury said Sunak would use the annual speech to tell finance chiefs and young industry leaders that he wanted to “to sharpen our competitive advantage in financial services”.</p> <p>The annual speech at which the chancellor and the governor of the Bank of England address City financiers would usually take place in the evening at a formal dinner in the Square Mile. However, it has been downgraded this year due to social distancing restrictions, with a morning gathering of about 40 people planned instead.</p> <p>In the speech, Sunak will say: “As the baton passes to a new generation of leaders in finance, I feel optimistic about the future. Ambitious at home. Confident internationally. With a plan to make this country the world’s most advanced and exciting financial services hub for decades to come, creating prosperity at home and projecting our values abroad.”</p>"
+        },
+        "isHosted": false,
+        "pillarId": "pillar/news",
+        "pillarName": "News"
+      },
+      {
+        "id": "technology/2021/jul/10/huawei-finance-chief-faces-setback-in-fight-against-us-extradition",
+        "type": "article",
+        "sectionId": "technology",
+        "sectionName": "Technology",
+        "webPublicationDate": "2021-07-09T22:58:49Z",
+        "webTitle": "Huawei finance chief faces setback in fight against US extradition",
+        "webUrl": "https://www.theguardian.com/technology/2021/jul/10/huawei-finance-chief-faces-setback-in-fight-against-us-extradition",
+        "apiUrl": "https://content.guardianapis.com/technology/2021/jul/10/huawei-finance-chief-faces-setback-in-fight-against-us-extradition",
+        "fields": {
+          "main": "<figure class=\"element element-image\" data-media-id=\"75ed9fabe90eb6495a12780a1e7683b6a42b8a2c\"> <img src=\"https://media.guim.co.uk/75ed9fabe90eb6495a12780a1e7683b6a42b8a2c/0_0_3500_2100/1000.jpg\" alt=\"Meng Wanzhou, seen here outside court in Vancouver last month\" width=\"1000\" height=\"600\" class=\"gu-image\" /> <figcaption> <span class=\"element-image__caption\">Meng Wanzhou, seen here outside court in Vancouver last month, has been held under house arrest in the Canadian city since December 2018. </span> <span class=\"element-image__credit\">Photograph: Jennifer Gauthier/Reuters</span> </figcaption> </figure>",
+          "body": "<p>A Canadian judge has denied an application by Meng Wanzhou, the Huawei chief financial officer, to add documents her legal team received from HSBC as evidence to her US extradition case, the judge announced on Friday.</p> <p>Meng, 49, is facing extradition from Canada to the US on charges of bank fraud for allegedly misleading HSBC about Huawei’s business dealings in Iran, potentially causing the bank to break US sanctions. She has been held under house arrest in Vancouver since December 2018, when she was first detained.</p> <aside class=\"element element-rich-link element--thumbnail\"> <p> <span>Related: </span><a href=\"https://www.theguardian.com/technology/2021/jun/29/huawei-meng-wanzhou-cfo-extradition-emails\">Huawei lawyers claim emails prove US has no grounds to extradite CFO from Canada</a> </p> </aside>  <p>Her legal team received a trove of over 300 pages of internal documents from HSBC through a court in Hong Kong, which the defence argued should be entered as evidence <a href=\"https://www.theguardian.com/technology/2021/jun/29/huawei-meng-wanzhou-cfo-extradition-emails\">because they would disprove the basis for the extradition claim</a>.</p> <p>Associate chief justice Heather Holmes, who has been overseeing the case in the British Columbia supreme court since its inception, disagreed. Her reasons will be released in writing in approximately 10 days, she said.</p> <p>“We respect the court’s ruling, but regret this outcome,” Huawei Canada said in a statement released after the ruling, insisting the documents showed HSBC was aware of Huawei’s business dealings in Iran, proving that the US’s account of the case was “manifestly unreliable”.</p> <p>Meng was arrested on a US warrant at Vancouver airport in late 2018, and has been battling extradition. Her detention infuriated the Chinese government and has helped drag relations between Beijing and Ottawa to their lowest point in years.</p> <p>The US accuses <a href=\"https://www.theguardian.com/technology/huawei\">Huawei</a> of using a Hong Kong shell company called Skycom to sell equipment to Iran, in violation of US sanctions. It says Meng committed fraud by misleading HSBC about the company’s business dealings in Iran.</p> <p>But Meng’s lawyers argued that the documents from HSBC show Huawei was open about its links to Skycom.</p> <p>Meng is to appear in court in early August. Her extradition hearings are scheduled to finish by the end of that month.</p>"
+        },
+        "isHosted": false,
+        "pillarId": "pillar/news",
+        "pillarName": "News"
+      }
+    ]
+  }
+}
