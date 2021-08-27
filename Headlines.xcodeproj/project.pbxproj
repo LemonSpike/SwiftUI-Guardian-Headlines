@@ -18,6 +18,7 @@
 		9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9B326D8EC18000819EA /* RealmSwift */; };
 		9FEED9C326D8F1F3000819EA /* HeadlinesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */; };
 		9FEED9C426D8F1F3000819EA /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9C226D8F1F3000819EA /* Article.swift */; };
+		9FEED9CC26D8F572000819EA /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9CB26D8F572000819EA /* String+HTML.swift */; };
 		9FEED9CF26D8F986000819EA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9CE26D8F986000819EA /* Realm */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		9FEED9A026D8D1D4000819EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesError.swift; sourceTree = "<group>"; };
 		9FEED9C226D8F1F3000819EA /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		9FEED9CB26D8F572000819EA /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */,
 				9FEED98326D8D1CE000819EA /* ContentView.swift */,
+				9FEED9C826D8F456000819EA /* Helpers */,
 				9FEED9C026D8F1F3000819EA /* Model */,
 				9FEED98526D8D1D4000819EA /* Assets.xcassets */,
 				9FEED98A26D8D1D4000819EA /* Info.plist */,
@@ -159,6 +162,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9FEED9C826D8F456000819EA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9FEED9CB26D8F572000819EA /* String+HTML.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +313,7 @@
 				9FEED9C426D8F1F3000819EA /* Article.swift in Sources */,
 				9FEED98426D8D1CE000819EA /* ContentView.swift in Sources */,
 				9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */,
+				9FEED9CC26D8F572000819EA /* String+HTML.swift in Sources */,
 				9FBF795D26D91330003EAD49 /* HeadlineResponse.swift in Sources */,
 				9FEED9C326D8F1F3000819EA /* HeadlinesError.swift in Sources */,
 			);
