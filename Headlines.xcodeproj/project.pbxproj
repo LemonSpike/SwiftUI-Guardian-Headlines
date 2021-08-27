@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		9FBF795D26D91330003EAD49 /* HeadlineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF795C26D91330003EAD49 /* HeadlineResponse.swift */; };
+		9FBF796426D92817003EAD49 /* headline_stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796326D92817003EAD49 /* headline_stub.json */; };
+		9FBF796526D92817003EAD49 /* headline_stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796326D92817003EAD49 /* headline_stub.json */; };
+		9FBF796726D92A4C003EAD49 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796626D92A4C003EAD49 /* OHHTTPStubs */; };
+		9FBF796926D93D4C003EAD49 /* MockArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF796826D93D4C003EAD49 /* MockArticle.swift */; };
+		9FBF796B26D93DF2003EAD49 /* headline_stub_body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796A26D93DF2003EAD49 /* headline_stub_body.txt */; };
+		9FBF796C26D93DF2003EAD49 /* headline_stub_body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796A26D93DF2003EAD49 /* headline_stub_body.txt */; };
+		9FBF796E26D94E28003EAD49 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796D26D94E28003EAD49 /* OHHTTPStubs */; };
+		9FBF797026D94E28003EAD49 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */; };
+		9FBF797626D94E49003EAD49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF797526D94E49003EAD49 /* Realm */; };
+		9FBF797826D94E49003EAD49 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF797726D94E49003EAD49 /* RealmSwift */; };
 		9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */; };
 		9FEED98426D8D1CE000819EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98326D8D1CE000819EA /* ContentView.swift */; };
 		9FEED98626D8D1D4000819EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEED98526D8D1D4000819EA /* Assets.xcassets */; };
@@ -41,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		9FBF795C26D91330003EAD49 /* HeadlineResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlineResponse.swift; sourceTree = "<group>"; };
+		9FBF796326D92817003EAD49 /* headline_stub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = headline_stub.json; sourceTree = "<group>"; };
+		9FBF796826D93D4C003EAD49 /* MockArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArticle.swift; sourceTree = "<group>"; };
+		9FBF796A26D93DF2003EAD49 /* headline_stub_body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = headline_stub_body.txt; sourceTree = "<group>"; };
 		9FEED97E26D8D1CE000819EA /* Headlines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesApp.swift; sourceTree = "<group>"; };
 		9FEED98326D8D1CE000819EA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +79,7 @@
 				9FEED9CF26D8F986000819EA /* Realm in Frameworks */,
 				9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */,
 				9FEED9AE26D8EB9A000819EA /* OHHTTPStubsSwift in Frameworks */,
+				9FBF796726D92A4C003EAD49 /* OHHTTPStubs in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,16 +94,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBF797826D94E49003EAD49 /* RealmSwift in Frameworks */,
+				9FBF797626D94E49003EAD49 /* Realm in Frameworks */,
+				9FBF796E26D94E28003EAD49 /* OHHTTPStubs in Frameworks */,
+				9FBF797026D94E28003EAD49 /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FBF796226D927AD003EAD49 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				9FBF796326D92817003EAD49 /* headline_stub.json */,
+				9FBF796A26D93DF2003EAD49 /* headline_stub_body.txt */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
 		9FEED97526D8D1CE000819EA = {
 			isa = PBXGroup;
 			children = (
 				9FEED98026D8D1CE000819EA /* Headlines */,
+				9FBF796226D927AD003EAD49 /* Stubs */,
 				9FEED99226D8D1D4000819EA /* HeadlinesTests */,
 				9FEED99D26D8D1D4000819EA /* HeadlinesUITests */,
 				9FEED97F26D8D1CE000819EA /* Products */,
@@ -133,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				9FEED99326D8D1D4000819EA /* HeadlinesTests.swift */,
+				9FBF796826D93D4C003EAD49 /* MockArticle.swift */,
 				9FEED99526D8D1D4000819EA /* Info.plist */,
 			);
 			path = HeadlinesTests;
@@ -192,6 +221,7 @@
 				9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */,
 				9FEED9B326D8EC18000819EA /* RealmSwift */,
 				9FEED9CE26D8F986000819EA /* Realm */,
+				9FBF796626D92A4C003EAD49 /* OHHTTPStubs */,
 			);
 			productName = Headlines;
 			productReference = 9FEED97E26D8D1CE000819EA /* Headlines.app */;
@@ -229,6 +259,12 @@
 				9FEED99C26D8D1D4000819EA /* PBXTargetDependency */,
 			);
 			name = HeadlinesUITests;
+			packageProductDependencies = (
+				9FBF796D26D94E28003EAD49 /* OHHTTPStubs */,
+				9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */,
+				9FBF797526D94E49003EAD49 /* Realm */,
+				9FBF797726D94E49003EAD49 /* RealmSwift */,
+			);
 			productName = HeadlinesUITests;
 			productReference = 9FEED99A26D8D1D4000819EA /* HeadlinesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -293,6 +329,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBF796B26D93DF2003EAD49 /* headline_stub_body.txt in Resources */,
+				9FBF796426D92817003EAD49 /* headline_stub.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +338,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBF796C26D93DF2003EAD49 /* headline_stub_body.txt in Resources */,
+				9FBF796526D92817003EAD49 /* headline_stub.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FBF796926D93D4C003EAD49 /* MockArticle.swift in Sources */,
 				9FEED99426D8D1D4000819EA /* HeadlinesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +697,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9FBF796626D92A4C003EAD49 /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		9FBF796D26D94E28003EAD49 /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+		9FBF797526D94E49003EAD49 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		9FBF797726D94E49003EAD49 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
