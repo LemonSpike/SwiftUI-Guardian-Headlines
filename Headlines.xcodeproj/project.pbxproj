@@ -10,28 +10,23 @@
 		9FBF795D26D91330003EAD49 /* HeadlineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF795C26D91330003EAD49 /* HeadlineResponse.swift */; };
 		9FBF796426D92817003EAD49 /* headline_stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796326D92817003EAD49 /* headline_stub.json */; };
 		9FBF796526D92817003EAD49 /* headline_stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796326D92817003EAD49 /* headline_stub.json */; };
-		9FBF796726D92A4C003EAD49 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796626D92A4C003EAD49 /* OHHTTPStubs */; };
 		9FBF796926D93D4C003EAD49 /* MockArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF796826D93D4C003EAD49 /* MockArticle.swift */; };
 		9FBF796B26D93DF2003EAD49 /* headline_stub_body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796A26D93DF2003EAD49 /* headline_stub_body.txt */; };
 		9FBF796C26D93DF2003EAD49 /* headline_stub_body.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF796A26D93DF2003EAD49 /* headline_stub_body.txt */; };
-		9FBF796E26D94E28003EAD49 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796D26D94E28003EAD49 /* OHHTTPStubs */; };
 		9FBF797026D94E28003EAD49 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */; };
-		9FBF797626D94E49003EAD49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF797526D94E49003EAD49 /* Realm */; };
-		9FBF797826D94E49003EAD49 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF797726D94E49003EAD49 /* RealmSwift */; };
 		9FBF797A26D99F18003EAD49 /* two_headline_stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF797926D99F17003EAD49 /* two_headline_stub.json */; };
 		9FBF797B26D99F18003EAD49 /* two_headline_stub.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FBF797926D99F17003EAD49 /* two_headline_stub.json */; };
+		9FBF798026DA7DC6003EAD49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF797F26DA7DC6003EAD49 /* Realm */; };
 		9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */; };
 		9FEED98426D8D1CE000819EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98326D8D1CE000819EA /* ContentView.swift */; };
 		9FEED98626D8D1D4000819EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEED98526D8D1D4000819EA /* Assets.xcassets */; };
 		9FEED98926D8D1D4000819EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEED98826D8D1D4000819EA /* Preview Assets.xcassets */; };
 		9FEED99426D8D1D4000819EA /* HeadlinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED99326D8D1D4000819EA /* HeadlinesTests.swift */; };
 		9FEED99F26D8D1D4000819EA /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED99E26D8D1D4000819EA /* HeadlinesUITests.swift */; };
-		9FEED9AE26D8EB9A000819EA /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */; };
 		9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9B326D8EC18000819EA /* RealmSwift */; };
 		9FEED9C326D8F1F3000819EA /* HeadlinesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9C126D8F1F3000819EA /* HeadlinesError.swift */; };
 		9FEED9C426D8F1F3000819EA /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9C226D8F1F3000819EA /* Article.swift */; };
 		9FEED9CC26D8F572000819EA /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED9CB26D8F572000819EA /* String+HTML.swift */; };
-		9FEED9CF26D8F986000819EA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEED9CE26D8F986000819EA /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,10 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FEED9CF26D8F986000819EA /* Realm in Frameworks */,
+				9FBF798026DA7DC6003EAD49 /* Realm in Frameworks */,
 				9FEED9B426D8EC18000819EA /* RealmSwift in Frameworks */,
-				9FEED9AE26D8EB9A000819EA /* OHHTTPStubsSwift in Frameworks */,
-				9FBF796726D92A4C003EAD49 /* OHHTTPStubs in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FBF797826D94E49003EAD49 /* RealmSwift in Frameworks */,
-				9FBF797626D94E49003EAD49 /* Realm in Frameworks */,
-				9FBF796E26D94E28003EAD49 /* OHHTTPStubs in Frameworks */,
 				9FBF797026D94E28003EAD49 /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,10 +212,8 @@
 			);
 			name = Headlines;
 			packageProductDependencies = (
-				9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */,
 				9FEED9B326D8EC18000819EA /* RealmSwift */,
-				9FEED9CE26D8F986000819EA /* Realm */,
-				9FBF796626D92A4C003EAD49 /* OHHTTPStubs */,
+				9FBF797F26DA7DC6003EAD49 /* Realm */,
 			);
 			productName = Headlines;
 			productReference = 9FEED97E26D8D1CE000819EA /* Headlines.app */;
@@ -245,6 +233,8 @@
 				9FEED99126D8D1D4000819EA /* PBXTargetDependency */,
 			);
 			name = HeadlinesTests;
+			packageProductDependencies = (
+			);
 			productName = HeadlinesTests;
 			productReference = 9FEED98F26D8D1D4000819EA /* HeadlinesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -264,10 +254,7 @@
 			);
 			name = HeadlinesUITests;
 			packageProductDependencies = (
-				9FBF796D26D94E28003EAD49 /* OHHTTPStubs */,
 				9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */,
-				9FBF797526D94E49003EAD49 /* Realm */,
-				9FBF797726D94E49003EAD49 /* RealmSwift */,
 			);
 			productName = HeadlinesUITests;
 			productReference = 9FEED99A26D8D1D4000819EA /* HeadlinesUITests.xctest */;
@@ -703,45 +690,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9FBF796626D92A4C003EAD49 /* OHHTTPStubs */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
-			productName = OHHTTPStubs;
-		};
-		9FBF796D26D94E28003EAD49 /* OHHTTPStubs */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
-			productName = OHHTTPStubs;
-		};
 		9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
 			productName = OHHTTPStubsSwift;
 		};
-		9FBF797526D94E49003EAD49 /* Realm */ = {
+		9FBF797F26DA7DC6003EAD49 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = Realm;
-		};
-		9FBF797726D94E49003EAD49 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = RealmSwift;
-		};
-		9FEED9AD26D8EB9A000819EA /* OHHTTPStubsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FEED9AC26D8EB9A000819EA /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
-			productName = OHHTTPStubsSwift;
 		};
 		9FEED9B326D8EC18000819EA /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
-		};
-		9FEED9CE26D8F986000819EA /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FEED9B226D8EC18000819EA /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = Realm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

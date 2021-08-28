@@ -8,7 +8,6 @@
 import XCTest
 import OHHTTPStubs
 import OHHTTPStubsSwift
-@testable import Headlines
 
 class HeadlinesUITests: XCTestCase {
 
