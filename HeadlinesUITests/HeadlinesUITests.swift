@@ -14,7 +14,7 @@ class HeadlinesUITests: XCTestCase {
   override func setUpWithError() throws {
     stub(condition: isHost("content.guardianapis.com")) { request in
       return HTTPStubsResponse(
-        fileAtPath: OHPathForFile("headline_stub.json", type(of: self))!,
+        fileAtPath: OHPathForFile("two_headline_stub.json", type(of: self))!,
         statusCode: 200,
         headers: ["Content-Type":"application/json"]
       )
