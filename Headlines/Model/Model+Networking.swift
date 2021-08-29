@@ -8,23 +8,28 @@
 import Foundation
 
 extension HeadlinesModel {
-  func fetchArticles() {
+  func fetchArticles(_ completion: (() -> Void)?) {
     if allArticles.isEmpty {
       services.storageService.retrieveAllArticlesFromStorage()
     }
-    guard allArticles.isEmpty else { return }
+    guard allArticles.isEmpty else {
+      completion?()
+      return
+    }
     guard let completeURL = constructArticlesURLWithQueryParams(
       baseURL: URLs.articleBaseURL
     ) else {
       error = HeadlinesError.urlConstructionFailed
+      completion?()
       return
     }
     DispatchQueue.global().async { [weak self] in
-      self?.makeArticlesRequest(completeURL)
+      self?.makeArticlesRequest(completeURL, completion)
     }
   }
 
-  private func makeArticlesRequest(_ completeURL: URL) {
+  private func makeArticlesRequest(_ completeURL: URL,
+                                   _ completion: (() -> Void)?) {
     let request = URLRequest(url: completeURL)
     task = services.networkService.fetchData(with: request) { [weak self]
       data, response, error in
@@ -52,13 +57,17 @@ extension HeadlinesModel {
             article.networkService = modelNetwork ?? URLSession.shared
           }
           self?.allArticles = response.articles
-          self?.persistAllArticles()
+          self?.persistAllArticles(completion)
         }
       } catch let error as HeadlinesError {
-        DispatchQueue.main.async { self?.error = error }
+        DispatchQueue.main.async {
+          self?.error = error
+          completion?()
+        }
       } catch {
         DispatchQueue.main.async {
           self?.error = HeadlinesError.unknown(error: error)
+          completion?()
         }
       }
     }

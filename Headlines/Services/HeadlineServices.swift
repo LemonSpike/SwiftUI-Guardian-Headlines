@@ -19,8 +19,9 @@ final class HeadlineServices {
     self.storageService = storageService
   }
 
-  func setDelegate(delegate: StorageServiceDelegate?) {
+  func setDelegate(delegate: StorageServiceDelegate?,
+                   _ completion: (() -> Void)?) {
     storageService.delegate = delegate
-    delegate?.fetchArticles()
+    delegate?.fetchArticles(completion)
   }
 }

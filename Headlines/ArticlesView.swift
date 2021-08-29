@@ -89,7 +89,7 @@ struct ArticlesView_Previews: PreviewProvider {
   static var model: HeadlinesModel = {
     let services = HeadlineServices.mock
     var model = HeadlinesModel(services: services)
-    services.setDelegate(delegate: model)
+    services.setDelegate(delegate: model, nil)
     return model
   }()
 

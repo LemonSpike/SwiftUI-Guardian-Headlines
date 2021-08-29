@@ -12,7 +12,7 @@ struct HeadlinesApp: App {
   @StateObject var model: HeadlinesModel = {
     let services = HeadlineServices()
     var model = HeadlinesModel(services: services)
-    services.setDelegate(delegate: model)
+    services.setDelegate(delegate: model, nil)
     return model
   }()
 

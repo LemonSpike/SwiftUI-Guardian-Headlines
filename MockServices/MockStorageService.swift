@@ -8,14 +8,34 @@
 import Foundation
 
 final class MockStorageDelegate: StorageServiceDelegate {
-  var allArticles: [Article] = [MockArticle.articleOne]
-  func fetchArticles() { }
+  let services: HeadlineServices
+  var allArticles: [Article] = []
+  var fetchedFromNetwork: Bool = false
+
+  init(services: HeadlineServices = .mock) {
+    self.services = services
+  }
+  func fetchArticles(_ completion: (() -> Void)?) {
+    fetchedFromNetwork = true
+    completion?()
+  }
 }
 
 final class MockStorageService: StorageService {
-  var delegate: StorageServiceDelegate? = MockStorageDelegate()
+  var delegate: StorageServiceDelegate?
+  var retrievedFromStorage = false
+  var firstTime = true
 
-  func retrieveAllArticlesFromStorage() { }
+  func retrieveAllArticlesFromStorage() {
+    if firstTime {
+      delegate?.allArticles = []
+      firstTime = false
+    } else {
+      delegate?.allArticles.append(contentsOf: [MockArticle.articleOne,
+                                                MockArticle.articleTwo])
+      retrievedFromStorage = true
+    }
+  }
 
   func toggleArticleIsFavouritedInStorage(_ article: inout Article) {
     let changer = delegate?.allArticles.first { candidate in
@@ -26,7 +46,8 @@ final class MockStorageService: StorageService {
 
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion:
-                                    @escaping (HeadlinesError?) -> Void) {
+                                    ((HeadlinesError?) -> Void)?) {
     delegate?.allArticles = articles
+    completion?(nil)
   }
 }

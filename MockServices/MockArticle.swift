@@ -21,4 +21,16 @@ final class MockArticle {
     article.body = String(data: data, encoding: .utf8)!
     return article
   }()
+
+  static let articleTwo: Article = {
+    let article = Article()
+    article.headline = "Huawei finance chief faces setback in fight against US extradition"
+    article.rawImageURL = "https://media.guim.co.uk/" +
+      "75ed9fabe90eb6495a12780a1e7683b6a42b8a2c/0_0_3500_2100/1000.jpg"
+    article.isFavourite = false
+    article.published = ISO8601DateFormatter()
+      .date(from: "2021-07-09T22:58:49Z")
+    article.body = ""
+    return article
+  }()
 }

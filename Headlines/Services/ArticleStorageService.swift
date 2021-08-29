@@ -17,12 +17,12 @@ protocol StorageService: AnyObject {
   func toggleArticleIsFavouritedInStorage(_ article: inout Article)
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion:
-                                    @escaping (HeadlinesError?) -> Void)
+                                    ((HeadlinesError?) -> Void)?)
 }
 
 protocol StorageServiceDelegate: AnyObject {
   var allArticles: [Article] { get set }
-  func fetchArticles()
+  func fetchArticles(_ completion: (() -> Void)?)
 }
 
 final class ArticleStorageService: StorageService {
@@ -40,10 +40,10 @@ final class ArticleStorageService: StorageService {
 
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion:
-                                    @escaping (HeadlinesError?) -> Void) {
+                                    ((HeadlinesError?) -> Void)?) {
     DispatchQueue.global().sync {
       guard let realm = try? Realm() else {
-        completion(.realmInstanceCreationFailed)
+        completion?(.realmInstanceCreationFailed)
         return
       }
       do {
@@ -51,9 +51,9 @@ final class ArticleStorageService: StorageService {
           realm.deleteAll()
           realm.add(articles)
         }
-        completion(nil)
+        completion?(nil)
       } catch let error {
-        completion(.articlePersistenceFailed(error: error))
+        completion?(.articlePersistenceFailed(error: error))
       }
     }
   }

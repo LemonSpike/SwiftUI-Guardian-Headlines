@@ -45,7 +45,8 @@ final class MockNetworkService: NetworkService {
                 .successResponse(url),
                 nil)
         break
-      default: handler(nil, .notFoundResponse(url), URLError(.fileDoesNotExist))
+      default:
+        handler(nil, .notFoundResponse(url), URLError(.fileDoesNotExist))
     }
 
     return AnyCancellable {}

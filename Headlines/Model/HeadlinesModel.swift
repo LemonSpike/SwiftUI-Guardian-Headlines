@@ -44,10 +44,13 @@ final class HeadlinesModel: ObservableObject {
     self.services = services
   }
 
-  func persistAllArticles() {
+  func persistAllArticles(_ completion: (() -> Void)?) {
     services.storageService.persistAllArticlesToStorage(allArticles, {
       [weak self] error in
-      DispatchQueue.main.async { self?.error = error }
+      DispatchQueue.main.async {
+        self?.error = error
+        completion?()
+      }
     })
   }
 }
