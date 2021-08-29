@@ -29,8 +29,7 @@ final class Article: Object, Decodable {
   }
 
   private enum FieldCodingKeys: String, CodingKey {
-    case body
-    case main
+    case body, main
   }
 
   convenience init(from decoder: Decoder) throws {
