@@ -13,15 +13,15 @@ final class HeadlinesModel: ObservableObject {
   @Published var error: HeadlinesError?
 
   var favouritedArticles: [Article] {
-    self.allArticles.filter({ $0.isFavourite })
+    allArticles.filter { $0.isFavourite }
   }
 
   var numberOfArticles: Int {
-    self.allArticles.count
+    allArticles.count
   }
 
   var numberOfFavouritedArticles: Int {
-    self.favouritedArticles.count
+    favouritedArticles.count
   }
 
   var currentArticle: Article? {
@@ -34,16 +34,16 @@ final class HeadlinesModel: ObservableObject {
   @Published(initialValue: 0) var currentIndex
   var task: AnyCancellable?
   let services: HeadlineServices
-  init(services: HeadlineServices)
-  {
+  init(services: HeadlineServices) {
     self.services = services
-    self.fetchArticles()
   }
 
   func persistAllArticles() {
-    self.services.storageService.persistAllArticlesToStorage(self.allArticles, {
+    services.storageService.persistAllArticlesToStorage(allArticles, {
       [weak self] error in
       DispatchQueue.main.async { self?.error = error }
     })
   }
 }
+
+extension HeadlinesModel: StorageServiceDelegate { }

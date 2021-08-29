@@ -9,7 +9,13 @@ import SwiftUI
 
 @main
 struct HeadlinesApp: App {
-  @StateObject var model = HeadlinesModel(services: HeadlineServices())
+  @StateObject var model: HeadlinesModel = {
+    let services = HeadlineServices()
+    var model = HeadlinesModel(services: services)
+    services.setDelegate(delegate: model)
+    return model
+  }()
+
   var body: some Scene {
     WindowGroup {
       ArticlesView(model: model)

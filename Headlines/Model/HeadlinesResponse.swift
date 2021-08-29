@@ -20,7 +20,7 @@ struct HeadlinesResponse: Decodable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let response = try container.nestedContainer(keyedBy: NestedCodingKeys.self,
                                                  forKey: .response)
-    self.articles = try response.decode([Article].self,
-                                        forKey: .results)
+    articles = try response.decode([Article].self,
+                                   forKey: .results)
   }
 }

@@ -10,17 +10,17 @@ import Foundation
 extension HeadlinesModel {
   func fetchArticles() {
     if allArticles.isEmpty {
-      self.services.storageService.retrieveAllArticlesFromStorage()
+      services.storageService.retrieveAllArticlesFromStorage()
     }
     guard allArticles.isEmpty else { return }
     guard let completeURL = constructArticlesURLWithQueryParams(
       baseURL: URLs.articleBaseURL
     ) else {
-      self.error = HeadlinesError.urlConstructionFailed
+      error = HeadlinesError.urlConstructionFailed
       return
     }
-    DispatchQueue.global().async {
-      self.makeArticlesRequest(completeURL)
+    DispatchQueue.global().async { [weak self] in
+      self?.makeArticlesRequest(completeURL)
     }
   }
 

@@ -7,13 +7,18 @@
 
 import Foundation
 
-final class MockStorageService: StorageService {
+final class MockStorageDelegate: StorageServiceDelegate {
   var allArticles: [Article] = [MockArticle.articleOne]
+  func fetchArticles() { }
+}
+
+final class MockStorageService: StorageService {
+  var delegate: StorageServiceDelegate? = MockStorageDelegate()
 
   func retrieveAllArticlesFromStorage() { }
 
   func toggleArticleIsFavouritedInStorage(_ article: Article) {
-    let changer = allArticles.first { candidate in
+    let changer = delegate?.allArticles.first { candidate in
       candidate.headline == article.headline
     }
     changer?.isFavourite.toggle()
@@ -22,6 +27,6 @@ final class MockStorageService: StorageService {
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion:
                                     @escaping (HeadlinesError?) -> Void) {
-    allArticles = articles
+    delegate?.allArticles = articles
   }
 }

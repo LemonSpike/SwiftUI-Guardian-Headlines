@@ -18,4 +18,9 @@ final class HeadlineServices {
     self.networkService = networkService
     self.storageService = storageService
   }
+
+  func setDelegate(delegate: StorageServiceDelegate?) {
+    storageService.delegate = delegate
+    delegate?.fetchArticles()
+  }
 }

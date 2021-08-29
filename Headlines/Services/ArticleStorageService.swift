@@ -11,7 +11,7 @@ import SwiftUI
 import RealmSwift
 
 protocol StorageService: AnyObject {
-  var allArticles: [Article] { get }
+  var delegate: StorageServiceDelegate? { get set }
 
   func retrieveAllArticlesFromStorage()
   func toggleArticleIsFavouritedInStorage(_ article: Article)
@@ -20,19 +20,21 @@ protocol StorageService: AnyObject {
                                     @escaping (HeadlinesError?) -> Void)
 }
 
+protocol StorageServiceDelegate: AnyObject {
+  var allArticles: [Article] { get set }
+  func fetchArticles()
+}
+
 final class ArticleStorageService: StorageService {
-  var allArticles: [Article]
-  init(allArticles: [Article] = []) {
-    self.allArticles = allArticles
-  }
+  weak var delegate: StorageServiceDelegate?
 
   func retrieveAllArticlesFromStorage() {
-    guard allArticles.isEmpty else {
+    guard let delegate = delegate, delegate.allArticles.isEmpty else {
       return
     }
     DispatchQueue.global().sync {
       guard let realm = try? Realm() else { return }
-      allArticles = Array(realm.objects(Article.self))
+      delegate.allArticles = Array(realm.objects(Article.self))
     }
   }
 
