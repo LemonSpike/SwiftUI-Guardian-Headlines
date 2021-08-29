@@ -53,12 +53,19 @@ struct ArticlesView: View {
 }
 
 struct ArticlesView_Previews: PreviewProvider {
+  static var model: HeadlinesModel = {
+    let services = HeadlineServices.mock
+    var model = HeadlinesModel(services: services)
+    services.setDelegate(delegate: model)
+    return model
+  }()
+
   static var previews: some View {
     Group {
-      ArticlesView(model: HeadlinesModel(services: HeadlineServices.mock))
+      ArticlesView(model: model)
         .colorScheme(.light)
         .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
-      ArticlesView(model: HeadlinesModel(services: HeadlineServices.mock))
+      ArticlesView(model: model)
         .colorScheme(.dark)
         .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro"))
     }

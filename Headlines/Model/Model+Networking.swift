@@ -47,6 +47,10 @@ extension HeadlinesModel {
         }
 
         DispatchQueue.main.async {
+          response.articles.forEach { [weak self] article in
+            let modelNetwork = self?.services.networkService
+            article.networkService = modelNetwork ?? URLSession.shared
+          }
           self?.allArticles = response.articles
           self?.persistAllArticles()
         }

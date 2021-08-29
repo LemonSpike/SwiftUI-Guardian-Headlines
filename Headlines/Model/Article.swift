@@ -16,8 +16,6 @@ final class Article: Object {
   @Persisted var isFavourite: Bool = false
   @Persisted dynamic var rawImageURL: String?
 
-  // If I had more time, I would have injected this dependency for SwiftUI
-  // Previews to load images and for best practice.
   var networkService: NetworkService = URLSession.shared
   private var task: AnyCancellable?
 
