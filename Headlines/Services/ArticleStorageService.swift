@@ -14,7 +14,7 @@ protocol StorageService: AnyObject {
   var delegate: StorageServiceDelegate? { get set }
 
   func retrieveAllArticlesFromStorage()
-  func toggleArticleIsFavouritedInStorage(_ article: Article)
+  func toggleArticleIsFavouritedInStorage(_ article: inout Article)
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion:
                                     @escaping (HeadlinesError?) -> Void)
@@ -58,7 +58,7 @@ final class ArticleStorageService: StorageService {
     }
   }
 
-  func toggleArticleIsFavouritedInStorage(_ article: Article) {
+  func toggleArticleIsFavouritedInStorage(_ article: inout Article) {
     DispatchQueue.global().sync {
       guard let realm = try? Realm() else {
         return

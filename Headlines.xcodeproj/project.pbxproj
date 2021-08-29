@@ -136,7 +136,6 @@
 		9FBF797C26D9A69D003EAD49 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9FBF79C626DAF309003EAD49 /* Model+Interaction.swift */,
 				9FBF79C426DAEE4F003EAD49 /* HeadlineServices.swift */,
 				9FBF79C826DAF4F7003EAD49 /* Services+Init.swift */,
 				9FBF79C226DAEDE5003EAD49 /* URLSession+NetworkService.swift */,
@@ -149,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				9FBF799926DA9493003EAD49 /* HeadlinesModel.swift */,
+				9FBF79C626DAF309003EAD49 /* Model+Interaction.swift */,
 				9FBF79CC26DAFE95003EAD49 /* Model+Networking.swift */,
 				9FBF799C26DA9573003EAD49 /* HeadlinesResponse.swift */,
 				9FBF799D26DA9573003EAD49 /* HeadlinesError.swift */,

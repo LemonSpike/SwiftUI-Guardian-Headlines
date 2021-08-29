@@ -8,9 +8,10 @@
 import Foundation
 
 // MARK: ArticleSwipeInteraction
-private protocol ArticleSwipeInteraction {
+private protocol ArticleInteraction {
   func didSwipeArticleRight()
   func didSwipeArticleLeft()
+  func toggleFavourite()
 }
 
 // MARK: ArticleSelection
@@ -19,7 +20,7 @@ private protocol ArticleSelection {
 }
 
 // MARK: Handle interactions.
-extension HeadlinesModel: ArticleSwipeInteraction {
+extension HeadlinesModel: ArticleInteraction {
   func didSwipeArticleRight() {
     guard currentIndex != 0, allArticles.indices.contains(currentIndex) else {
       return
@@ -31,6 +32,12 @@ extension HeadlinesModel: ArticleSwipeInteraction {
     guard currentIndex != allArticles.indices.last,
           allArticles.indices.contains(currentIndex) else { return }
     currentIndex += 1
+  }
+
+  func toggleFavourite() {
+    guard allArticles.indices.contains(currentIndex) else { return }
+    services.storageService
+      .toggleArticleIsFavouritedInStorage(&allArticles[currentIndex])
   }
 }
 

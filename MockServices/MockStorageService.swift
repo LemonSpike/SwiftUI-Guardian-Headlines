@@ -17,7 +17,7 @@ final class MockStorageService: StorageService {
 
   func retrieveAllArticlesFromStorage() { }
 
-  func toggleArticleIsFavouritedInStorage(_ article: Article) {
+  func toggleArticleIsFavouritedInStorage(_ article: inout Article) {
     let changer = delegate?.allArticles.first { candidate in
       candidate.headline == article.headline
     }

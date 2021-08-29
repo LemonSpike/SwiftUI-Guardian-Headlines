@@ -12,42 +12,67 @@ struct ArticlesView: View {
   @ObservedObject var model: HeadlinesModel
 
   var body: some View {
-    ScrollView(.vertical, showsIndicators: true) {
-      VStack(alignment: .leading) {
-        ZStack(alignment: .bottom) {
-          if let data = model
-              .currentArticle?.imageData, let image = UIImage(data: data) {
-            Image(uiImage: image)
-              .resizable()
-              .scaledToFit()
-          }
-          Text(model.currentArticle?.headline ?? "")
-            .font(.title)
-            .foregroundColor(.white)
-            .padding()
-        }
-        Text(model.currentArticle?.body ?? "")
-          .font(.body)
-          .foregroundColor(.black)
-          .lineSpacing(1)
-          .padding()
-      }.frame(minWidth: 0,
-              maxWidth: .infinity,
-              minHeight: 0,
-              maxHeight: .infinity,
-              alignment: .topLeading)
-      .padding()
-      .gesture(
-        DragGesture(coordinateSpace: .local)
-          .onEnded { gesture in
-            let translation = gesture.translation
-            if translation.width > 20 {
-              model.didSwipeArticleRight()
-            } else if translation.width < -20 {
-              model.didSwipeArticleLeft()
+    NavigationView {
+      ScrollView(.vertical, showsIndicators: true) {
+        VStack(alignment: .leading) {
+          ZStack(alignment: .bottom) {
+            if let data = model
+                .currentArticle?.imageData, let image = UIImage(data: data) {
+              Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
             }
+            Text(model.currentArticle?.headline ?? "")
+              .font(.title)
+              .foregroundColor(.white)
+              .padding()
           }
-      )
+          Text(model.currentArticle?.body ?? "")
+            .font(.body)
+            .foregroundColor(.primary)
+            .lineSpacing(1)
+            .padding()
+        }.frame(minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 0,
+                maxHeight: .infinity,
+                alignment: .topLeading)
+        .padding()
+        .gesture(
+          DragGesture(coordinateSpace: .local)
+            .onEnded { gesture in
+              let translation = gesture.translation
+              if translation.width > 20 {
+                model.didSwipeArticleRight()
+              } else if translation.width < -20 {
+                model.didSwipeArticleLeft()
+              }
+            }
+        )
+      }.navigationTitle("Headlines 🗞")
+      .navigationViewStyle(DoubleColumnNavigationViewStyle())
+      .toolbar(content: {
+        ToolbarItemGroup(placement: .bottomBar) {
+          if model.currentArticle?.isFavourite == true {
+            Image(systemName: "star.fill")
+              .foregroundColor(.accentColor)
+              .onTapGesture {
+                model.toggleFavourite()
+              }
+          } else {
+            Image(systemName: "star")
+              .foregroundColor(.accentColor)
+              .onTapGesture {
+                model.toggleFavourite()
+              }
+          }
+          Spacer()
+          Button("Favourites") {
+            print("hey")
+          }.font(.title2)
+          .foregroundColor(.accentColor)
+        }
+      })
     }
   }
 }
