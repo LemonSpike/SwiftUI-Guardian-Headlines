@@ -6,9 +6,8 @@
 //
 
 import Foundation
-@testable import Headlines
 
-struct MockArticle {
+final class MockArticle {
   static let articleOne: Article = {
     let article = Article()
     article.headline = "Rishi Sunak to announce £15bn green finance plan"
@@ -17,8 +16,9 @@ struct MockArticle {
     article.isFavourite = false
     article.published = ISO8601DateFormatter()
       .date(from: "2021-06-30T23:01:51Z")
-    let body = Bundle(for: HeadlinesTests.self).bundlePath + "/headline_stub_body.txt"
-    article.body = try! String(contentsOfFile: body)
+    let data = mockFixture(moduleFor: MockArticle.self,
+                           name: "headline_stub_body.txt")
+    article.body = String(data: data, encoding: .utf8)!
     return article
   }()
 }

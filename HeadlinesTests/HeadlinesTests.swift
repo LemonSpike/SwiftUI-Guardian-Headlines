@@ -11,8 +11,8 @@ import XCTest
 class HeadlinesTests: XCTestCase {
 
   func test_article_decodes_from_json_correctly_and_strips_html() throws {
-    let stub = Bundle(for: Self.self).bundlePath + "/headline_stub.json"
-    let jsonData = try String(contentsOfFile: stub).data(using: .utf8)!
+
+    let jsonData = mockFixture(moduleFor: Self.self, name: "headline_stub.json")
     let response = try JSONDecoder().decode(HeadlinesResponse.self,
                                             from: jsonData)
 
@@ -33,8 +33,7 @@ class HeadlinesTests: XCTestCase {
   }
 
   func test_multiple_articles_are_decoded_from_json() throws {
-    let stub = Bundle(for: Self.self).bundlePath + "/two_headline_stub.json"
-    let jsonData = try String(contentsOfFile: stub).data(using: .utf8)!
+    let jsonData = mockFixture(moduleFor: Self.self, name: "two_headline_stub.json")
     let response = try JSONDecoder().decode(HeadlinesResponse.self,
                                             from: jsonData)
 
