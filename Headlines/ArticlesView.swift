@@ -54,8 +54,13 @@ struct ArticlesView: View {
 
 struct ArticlesView_Previews: PreviewProvider {
   static var previews: some View {
-//    let model = HeadlinesModel(services: HeadlineServices.mock)
-//    ArticlesView(model: model)
-    Text("Hello, world! 👋")
+    Group {
+      ArticlesView(model: HeadlinesModel(services: HeadlineServices.mock))
+        .colorScheme(.light)
+        .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
+      ArticlesView(model: HeadlinesModel(services: HeadlineServices.mock))
+        .colorScheme(.dark)
+        .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro"))
+    }
   }
 }
