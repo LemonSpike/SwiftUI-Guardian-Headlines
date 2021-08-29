@@ -12,13 +12,10 @@ final class HeadlineServices {
 
   let networkService: NetworkService
   let storageService: StorageService
-  let displayingService: ArticleDisplayingService
 
   init(networkService: NetworkService,
-       storageService: StorageService,
-       displayingService: ArticleDisplayingService) {
+       storageService: StorageService) {
     self.networkService = networkService
     self.storageService = storageService
-    self.displayingService = displayingService
   }
 }

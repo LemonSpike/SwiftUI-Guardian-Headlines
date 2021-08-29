@@ -10,7 +10,6 @@ import Foundation
 extension HeadlineServices {
   convenience init() {
     self.init(networkService: URLSession.shared,
-              storageService: ArticleStorageService(),
-              displayingService: .init())
+              storageService: ArticleStorageService())
   }
 }
