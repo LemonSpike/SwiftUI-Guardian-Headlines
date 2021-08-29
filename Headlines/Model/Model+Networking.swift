@@ -28,51 +28,6 @@ extension HeadlinesModel {
     }
   }
 
-  private func makeArticlesRequest(_ completeURL: URL,
-                                   _ completion: (() -> Void)?) {
-    let request = URLRequest(url: completeURL)
-    task = services.networkService.fetchData(with: request) { [weak self]
-      data, response, error in
-      do {
-        if let error = error {
-          throw HeadlinesError.networkRequestError(error: error)
-        }
-
-        guard let data = data else {
-          throw HeadlinesError.noDataReceived
-        }
-
-        guard let response = try? JSONDecoder().decode(HeadlinesResponse.self,
-                                                       from: data) else {
-          throw HeadlinesError.unexpectedJsonFormat
-        }
-
-        if response.articles.isEmpty {
-          throw HeadlinesError.emptyPayload
-        }
-
-        DispatchQueue.main.async {
-          response.articles.forEach { [weak self] article in
-            let modelNetwork = self?.services.networkService
-            article.networkService = modelNetwork ?? URLSession.shared
-          }
-          self?.allArticles = response.articles
-          self?.persistAllArticles(completion)
-        }
-      } catch let error as HeadlinesError {
-        DispatchQueue.main.async {
-          self?.error = error
-          completion?()
-        }
-      } catch {
-        DispatchQueue.main.async {
-          self?.error = HeadlinesError.unknown(error: error)
-          completion?()
-        }
-      }
-    }
-  }
-
   private func constructArticlesURLWithQueryParams(baseURL: String,
                                                    path: String =
                                                     URLs.articleSearchPath,
@@ -92,5 +47,54 @@ extension HeadlinesModel {
     urlComponents?.queryItems = queryItems
     urlComponents?.path = path
     return urlComponents?.url
+  }
+
+  private func makeArticlesRequest(_ completeURL: URL,
+                                   _ completion: (() -> Void)?) {
+    let request = URLRequest(url: completeURL)
+    task = services.networkService.fetchData(with: request) { [weak self] data, response, error in
+      do {
+        if let error = error {
+          throw HeadlinesError.networkRequestError(error: error)
+        }
+
+        guard let data = data else {
+          throw HeadlinesError.noDataReceived
+        }
+
+        guard let response = try? JSONDecoder().decode(HeadlinesResponse.self,
+                                                       from: data) else {
+          throw HeadlinesError.unexpectedJsonFormat
+        }
+
+        if response.articles.isEmpty {
+          throw HeadlinesError.emptyPayload
+        }
+
+        DispatchQueue.main.async {
+          self?.cacheAllArticles(response.articles, completion)
+        }
+      } catch let error as HeadlinesError {
+        DispatchQueue.main.async {
+          self?.error = error
+          completion?()
+        }
+      } catch {
+        DispatchQueue.main.async {
+          self?.error = HeadlinesError.unknown(error: error)
+          completion?()
+        }
+      }
+    }
+  }
+
+  private func cacheAllArticles(_ articles: [Article],
+                                _ completion: (() -> Void)?) {
+    articles.forEach { [weak self] article in
+      let modelNetwork = self?.services.networkService
+      article.networkService = modelNetwork ?? URLSession.shared
+    }
+    self.allArticles = articles
+    self.persistAllArticles(completion)
   }
 }

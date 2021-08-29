@@ -45,8 +45,7 @@ final class HeadlinesModel: ObservableObject {
   }
 
   func persistAllArticles(_ completion: (() -> Void)?) {
-    services.storageService.persistAllArticlesToStorage(allArticles, {
-      [weak self] error in
+    services.storageService.persistAllArticlesToStorage(allArticles, { [weak self] error in
       DispatchQueue.main.async {
         self?.error = error
         completion?()

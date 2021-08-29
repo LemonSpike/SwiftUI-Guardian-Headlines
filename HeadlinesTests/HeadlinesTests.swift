@@ -64,7 +64,7 @@ Huawei finance chief faces setback in fight against US extradition
     XCTAssertEqual(model.allArticles.count, 2)
     XCTAssertEqual(model.allArticles[0].headline,
                    "Rishi Sunak to announce £15bn green finance plan")
-    XCTAssertEqual(model.allArticles[1].headline,"""
+    XCTAssertEqual(model.allArticles[1].headline, """
 Huawei finance chief faces setback in fight against US extradition
 """)
   }
@@ -87,7 +87,7 @@ Huawei finance chief faces setback in fight against US extradition
     XCTAssertEqual(model.allArticles.count, 2)
     XCTAssertEqual(model.allArticles[0].headline,
                    "Rishi Sunak to announce £15bn green finance plan")
-    XCTAssertEqual(model.allArticles[1].headline,"""
+    XCTAssertEqual(model.allArticles[1].headline, """
 Huawei finance chief faces setback in fight against US extradition
 """)
   }

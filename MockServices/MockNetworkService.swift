@@ -27,26 +27,23 @@ final class MockNetworkService: NetworkService {
       "75ed9fabe90eb6495a12780a1e7683b6a42b8a2c/0_0_3500_2100/1000.jpg"
 
     switch "\(method) \(url.absoluteString)" {
-      case "GET \(contentURL)":
-        handler(mockFixture(moduleFor: Self.self,
-                            name: "two_headline_stub.json"),
-                .successResponse(url),
-                nil)
-        break
-      case "GET \(headlineOneImg)":
-        handler(mockFixture(moduleFor: Self.self,
-                            name: "headline_one_img.jpg"),
-                .successResponse(url),
-                nil)
-        break
-      case "GET \(headlineTwoImg)":
-        handler(mockFixture(moduleFor: Self.self,
-                            name: "headline_two_img.jpg"),
-                .successResponse(url),
-                nil)
-        break
-      default:
-        handler(nil, .notFoundResponse(url), URLError(.fileDoesNotExist))
+    case "GET \(contentURL)":
+      handler(mockFixture(moduleFor: Self.self,
+                          name: "two_headline_stub.json"),
+              .successResponse(url),
+              nil)
+    case "GET \(headlineOneImg)":
+      handler(mockFixture(moduleFor: Self.self,
+                          name: "headline_one_img.jpg"),
+              .successResponse(url),
+              nil)
+    case "GET \(headlineTwoImg)":
+      handler(mockFixture(moduleFor: Self.self,
+                          name: "headline_two_img.jpg"),
+              .successResponse(url),
+              nil)
+    default:
+      handler(nil, .notFoundResponse(url), URLError(.fileDoesNotExist))
     }
 
     return AnyCancellable {}

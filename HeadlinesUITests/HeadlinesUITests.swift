@@ -12,11 +12,11 @@ import OHHTTPStubsSwift
 class HeadlinesUITests: XCTestCase {
 
   override func setUpWithError() throws {
-    stub(condition: isHost("content.guardianapis.com")) { request in
+    stub(condition: isHost("content.guardianapis.com")) { _ in
       return HTTPStubsResponse(
         fileAtPath: OHPathForFile("two_headline_stub.json", type(of: self))!,
         statusCode: 200,
-        headers: ["Content-Type":"application/json"]
+        headers: ["Content-Type": "application/json"]
       )
     }
     continueAfterFailure = false
@@ -26,7 +26,7 @@ class HeadlinesUITests: XCTestCase {
     HTTPStubs.removeAllStubs()
   }
 
-  func testExample() throws {
+  func testSwipeRight() throws {
     // UI tests must launch the application that they test.
     let app = XCUIApplication()
     app.launch()

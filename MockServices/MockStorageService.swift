@@ -22,7 +22,7 @@ final class MockStorageDelegate: StorageServiceDelegate {
 }
 
 final class MockStorageService: StorageService {
-  var delegate: StorageServiceDelegate?
+  weak var delegate: StorageServiceDelegate?
   var retrievedFromStorage = false
   var firstTime = true
 
@@ -45,8 +45,7 @@ final class MockStorageService: StorageService {
   }
 
   func persistAllArticlesToStorage(_ articles: [Article],
-                                   _ completion:
-                                    ((HeadlinesError?) -> Void)?) {
+                                   _ completion: ((HeadlinesError?) -> Void)?) {
     delegate?.allArticles = articles
     completion?(nil)
   }

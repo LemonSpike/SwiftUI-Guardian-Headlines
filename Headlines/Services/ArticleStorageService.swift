@@ -5,7 +5,6 @@
 //  Created by Pranav Kasetti on 28/08/2021.
 //
 
-
 import Foundation
 import SwiftUI
 import RealmSwift
@@ -16,8 +15,7 @@ protocol StorageService: AnyObject {
   func retrieveAllArticlesFromStorage()
   func toggleArticleIsFavouritedInStorage(_ article: inout Article)
   func persistAllArticlesToStorage(_ articles: [Article],
-                                   _ completion:
-                                    ((HeadlinesError?) -> Void)?)
+                                   _ completion: ((HeadlinesError?) -> Void)?)
 }
 
 protocol StorageServiceDelegate: AnyObject {
@@ -39,8 +37,7 @@ final class ArticleStorageService: StorageService {
   }
 
   func persistAllArticlesToStorage(_ articles: [Article],
-                                   _ completion:
-                                    ((HeadlinesError?) -> Void)?) {
+                                   _ completion: ((HeadlinesError?) -> Void)?) {
     DispatchQueue.global().sync {
       guard let realm = try? Realm() else {
         completion?(.realmInstanceCreationFailed)

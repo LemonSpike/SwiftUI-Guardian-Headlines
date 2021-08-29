@@ -30,7 +30,7 @@ final class Article: Object {
     group.enter()
     let req = URLRequest(url: url)
     var dataReceived: Data?
-    task = networkService.fetchData(with: req) { data, response, error in
+    task = networkService.fetchData(with: req) { data, _, _ in
       dataReceived = data
       group.leave()
     }
