@@ -50,6 +50,12 @@ struct ArticlesView: View {
             }
         )
       }
+      .alert(isPresented: $model.showAlert) {
+        Alert(title: Text("An error occurred"),
+              message: Text("Please try again later."),
+              dismissButton: Alert.Button.default(Text("Ok"))
+        )
+      }
       .animation(.spring())
       .navigationTitle("Headlines 🗞")
       .navigationViewStyle(DoubleColumnNavigationViewStyle())

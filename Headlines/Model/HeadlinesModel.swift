@@ -10,7 +10,13 @@ import Foundation
 
 final class HeadlinesModel: ObservableObject {
   @Published(initialValue: []) var allArticles: [Article]
-  @Published var error: HeadlinesError?
+  var error: HeadlinesError? {
+    didSet {
+      showAlert = (error != nil)
+    }
+  }
+
+  @Published var showAlert = false
 
   var favouritedArticles: [Article] {
     allArticles.filter { $0.isFavourite }
