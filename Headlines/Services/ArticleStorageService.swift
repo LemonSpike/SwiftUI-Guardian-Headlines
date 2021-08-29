@@ -62,7 +62,7 @@ final class ArticleStorageService: StorageService {
         return
       }
       try? realm.write {
-        article.isFavourite = !article.isFavourite
+        article.isFavourite.toggle()
       }
     }
   }
