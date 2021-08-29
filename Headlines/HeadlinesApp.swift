@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct HeadlinesApp: App {
+  @StateObject var model = HeadlinesModel(services: HeadlineServices())
   var body: some Scene {
     WindowGroup {
-      ArticlesView()
+      ArticlesView(model: model)
     }
   }
 }

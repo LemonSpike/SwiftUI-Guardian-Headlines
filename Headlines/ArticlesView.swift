@@ -9,32 +9,53 @@ import SwiftUI
 
 struct ArticlesView: View {
 
-  @ObservedObject var headlinesService = HeadlinesService()
+  @ObservedObject var model: HeadlinesModel
 
   var body: some View {
     ScrollView(.vertical, showsIndicators: true) {
-      VStack(alignment: .leading, spacing: 10) {
+      VStack(alignment: .leading) {
         ZStack(alignment: .bottom) {
-          Image(uiImage: UIImage(data: headlinesService
-                                  .currentArticle.imageData)!)
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-          Text(headlinesService.currentArticle.headline)
-            .font(.headline)
+          if let data = model
+              .currentArticle?.imageData, let image = UIImage(data: data) {
+            Image(uiImage: image)
+              .resizable()
+              .scaledToFit()
+          }
+          Text(model.currentArticle?.headline ?? "")
+            .font(.title)
             .foregroundColor(.white)
             .padding()
         }
-        Text(headlinesService.currentArticle.body)
+        Text(model.currentArticle?.body ?? "")
           .font(.body)
           .foregroundColor(.black)
           .lineSpacing(1)
-      }.padding()
+          .padding()
+      }.frame(minWidth: 0,
+              maxWidth: .infinity,
+              minHeight: 0,
+              maxHeight: .infinity,
+              alignment: .topLeading)
+      .padding()
+      .gesture(
+        DragGesture(coordinateSpace: .local)
+          .onEnded { gesture in
+            let translation = gesture.translation
+            if translation.width > 20 {
+              model.didSwipeArticleRight()
+            } else if translation.width < -20 {
+              model.didSwipeArticleLeft()
+            }
+          }
+      )
     }
   }
 }
 
 struct ArticlesView_Previews: PreviewProvider {
   static var previews: some View {
-    ArticlesView()
+//    let model = HeadlinesModel(services: HeadlineServices.mock)
+//    ArticlesView(model: model)
+    Text("Hello, world! 👋")
   }
 }
