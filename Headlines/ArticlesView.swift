@@ -49,7 +49,9 @@ struct ArticlesView: View {
               }
             }
         )
-      }.navigationTitle("Headlines 🗞")
+      }
+      .animation(.spring())
+      .navigationTitle("Headlines 🗞")
       .navigationViewStyle(DoubleColumnNavigationViewStyle())
       .toolbar(content: {
         ToolbarItemGroup(placement: .bottomBar) {
