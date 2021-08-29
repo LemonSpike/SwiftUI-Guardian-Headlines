@@ -21,6 +21,7 @@ struct ArticlesView: View {
               Image(uiImage: image)
                 .resizable()
                 .scaledToFit()
+                .accessibility(identifier: Constants.articleImageId)
             }
             Text(model.currentArticle?.headline ?? "")
               .font(.title)
@@ -32,6 +33,7 @@ struct ArticlesView: View {
             .foregroundColor(.primary)
             .lineSpacing(1)
             .padding()
+            .accessibility(identifier: Constants.articleBodyId)
         }.frame(minWidth: 0,
                 maxWidth: .infinity,
                 minHeight: 0,
@@ -67,12 +69,14 @@ struct ArticlesView: View {
               .onTapGesture {
                 model.toggleFavourite()
               }
+              .accessibility(identifier: Constants.articleStarIconId)
           } else {
             Image(systemName: "star")
               .foregroundColor(.accentColor)
               .onTapGesture {
                 model.toggleFavourite()
               }
+              .accessibility(identifier: Constants.articleStarFillIconId)
           }
           Spacer()
           Button("Favourites") {

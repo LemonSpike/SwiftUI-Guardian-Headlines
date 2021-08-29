@@ -19,6 +19,14 @@ class HeadlinesUITests: XCTestCase {
         headers: ["Content-Type": "application/json"]
       )
     }
+
+    stub(condition: isHost("media.guim.co.uk")) { _ in
+      return HTTPStubsResponse(
+        fileAtPath: OHPathForFile("headline_one_img.jpg", type(of: self))!,
+        statusCode: 200,
+        headers: ["Content-Type": "image/jpeg"]
+      )
+    }
     continueAfterFailure = false
   }
 
@@ -26,13 +34,58 @@ class HeadlinesUITests: XCTestCase {
     HTTPStubs.removeAllStubs()
   }
 
-  func testSwipeRight() throws {
-    // UI tests must launch the application that they test.
+  func testArticleSwipeLeftUpdatesArticle() throws {
     let app = XCUIApplication()
     app.launch()
 
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+    XCTAssert(app
+                .staticTexts["Rishi Sunak to announce £15bn green finance plan"]
+                .waitForExistence(timeout: 5))
+    XCTAssert(app.images["articleImage"].waitForExistence(timeout: 5))
+    XCTAssert(app.staticTexts["articleBody"].waitForExistence(timeout: 5))
+
+    app.staticTexts["Rishi Sunak to announce £15bn green finance plan"]
+      .swipeLeft()
+
+    XCTAssert(app.staticTexts["Huawei finance chief faces setback in fight against US extradition"].waitForExistence(timeout: 5))
+    XCTAssert(app.images["articleImage"].waitForExistence(timeout: 5))
+    XCTAssert(app.staticTexts["articleBody"].waitForExistence(timeout: 5))
+  }
+
+  func testArticleSwipeRightUpdatesArticle() {
+    let app = XCUIApplication()
+    app.launch()
+
+    XCTAssert(app.staticTexts["Rishi Sunak to announce £15bn green finance plan"].waitForExistence(timeout: 5))
+
+    app.staticTexts["Rishi Sunak to announce £15bn green finance plan"]
+      .swipeLeft()
+    XCTAssert(app.staticTexts["Huawei finance chief faces setback in fight against US extradition"].waitForExistence(timeout: 5))
+
+    app.staticTexts["Huawei finance chief faces setback in fight against US extradition"].swipeRight()
+    XCTAssert(app.staticTexts["Rishi Sunak to announce £15bn green finance plan"].waitForExistence(timeout: 5))
+    XCTAssert(app.images["articleImage"].waitForExistence(timeout: 5))
+    XCTAssert(app.staticTexts["articleBody"].waitForExistence(timeout: 5))
+  }
+
+  func testFavouritingArticleUpdatesIcon() {
+    let app = XCUIApplication()
+    app.launch()
+
+    XCTAssert(app.images["favorite"].waitForExistence(timeout: 5))
+    if (!app.images["articleStarIcon"].exists) {
+      XCTAssert(app.images["articleStarFillIcon"].waitForExistence(timeout: 5))
+      app.images["articleStarFillIcon"].tap()
+      XCTAssert(app.images["articleStarIcon"].waitForExistence(timeout: 5))
+      app.images["articleStarIcon"].tap()
+      XCTAssert(app.images["articleStarFillIcon"].waitForExistence(timeout: 5))
+    } else {
+      XCTAssert(app.images["articleStarIcon"].waitForExistence(timeout: 5))
+      app.images["articleStarIcon"].tap()
+      XCTAssert(app.images["articleStarFillIcon"].waitForExistence(timeout: 5))
+      app.images["articleStarFillIcon"].tap()
+      XCTAssert(app.images["articleStarIcon"].waitForExistence(timeout: 5))
+    }
   }
 
   func testLaunchPerformance() throws {

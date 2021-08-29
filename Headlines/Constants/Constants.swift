@@ -10,4 +10,9 @@ import Foundation
 struct Constants {
   // Please contact me for the valid API Key.
   static let APIKey = ""
+
+  static let articleImageId = "articleImage"
+  static let articleBodyId = "articleBody"
+  static let articleStarIconId = "articleStarIcon"
+  static let articleStarFillIconId = "articleStarFillIcon"
 }
