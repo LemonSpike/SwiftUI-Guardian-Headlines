@@ -11,7 +11,7 @@ import XCTest
 class HeadlinesTests: XCTestCase {
 
   var services: HeadlineServices = .mock
-  var model: HeadlinesModel?
+  var model: HeadlinesModel = .init(services: .mock)
 
   override func setUp() {
     services = .mock
@@ -19,64 +19,64 @@ class HeadlinesTests: XCTestCase {
   }
 
   func test_articles_are_downloaded_through_network_on_first_fetch() throws {
-    let storage = model?.services.storageService as? MockStorageService
+    let storage = model.services.storageService as? MockStorageService
     XCTAssertEqual(storage?.retrievedFromStorage , false)
-    XCTAssertEqual(model?.allArticles, [])
+    XCTAssertEqual(model.allArticles, [])
     let expect = expectation(description: "Article fetched from network")
     services.setDelegate(delegate: model) {
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
     XCTAssertEqual(storage?.retrievedFromStorage , false)
-    XCTAssertEqual(model?.allArticles.count, 2)
-    XCTAssertEqual(model?.allArticles[0].headline,
+    XCTAssertEqual(model.allArticles.count, 2)
+    XCTAssertEqual(model.allArticles[0].headline,
                    "Rishi Sunak to announce £15bn green finance plan")
-    XCTAssertEqual(model?.allArticles[1].headline, """
+    XCTAssertEqual(model.allArticles[1].headline, """
 Huawei finance chief faces setback in fight against US extradition
 """)
   }
 
   func test_articles_are_cached_for_second_fetch() throws {
-    let storage = model?.services.storageService as? MockStorageService
+    let storage = model.services.storageService as? MockStorageService
     XCTAssertEqual(storage?.retrievedFromStorage, false)
-    XCTAssertEqual(model?.allArticles, [])
+    XCTAssertEqual(model.allArticles, [])
     let expect = expectation(description: "Article fetched from storage")
     services.setDelegate(delegate: model) { [weak self] in
-      self?.model?.allArticles = []
-      self?.model?.fetchArticles {
+      self?.model.allArticles = []
+      self?.model.fetchArticles {
         expect.fulfill()
       }
     }
     wait(for: [expect], timeout: 10)
     XCTAssertEqual(storage?.retrievedFromStorage, true)
-    XCTAssertEqual(model?.allArticles.count, 2)
-    XCTAssertEqual(model?.allArticles[0].headline,
+    XCTAssertEqual(model.allArticles.count, 2)
+    XCTAssertEqual(model.allArticles[0].headline,
                    "Rishi Sunak to announce £15bn green finance plan")
-    XCTAssertEqual(model?.allArticles[1].headline, """
+    XCTAssertEqual(model.allArticles[1].headline, """
 Huawei finance chief faces setback in fight against US extradition
 """)
   }
 
   func test_model_number_of_articles() throws {
-    XCTAssertEqual(model?.allArticles.count, 0)
+    XCTAssertEqual(model.allArticles.count, 0)
     let expect = expectation(description: "Articles fetched")
     services.setDelegate(delegate: model) {
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
-    XCTAssert(model?.allArticles.count ?? 0 > 0)
-    XCTAssertEqual(model?.allArticles.count, model?.numberOfArticles)
+    XCTAssert(model.allArticles.count > 0)
+    XCTAssertEqual(model.allArticles.count, model.numberOfArticles)
   }
 
   func test_model_current_article() throws {
-    XCTAssertNil(model?.currentArticle)
-    XCTAssertEqual(model?.allArticles, [])
+    XCTAssertNil(model.currentArticle)
+    XCTAssertEqual(model.allArticles, [])
     let expect = expectation(description: "Articles fetched")
     services.setDelegate(delegate: model) {
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
-    XCTAssertEqual(model?.allArticles.first, model?.currentArticle)
+    XCTAssertEqual(model.allArticles.first, model.currentArticle)
   }
 
   func test_model_current_article_updates_after_swipe_left() throws {
@@ -85,8 +85,8 @@ Huawei finance chief faces setback in fight against US extradition
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
-    model?.didSwipeArticleLeft()
-    XCTAssertEqual(model?.allArticles[1], model?.currentArticle)
+    model.didSwipeArticleLeft()
+    XCTAssertEqual(model.allArticles[1], model.currentArticle)
   }
 
   func test_model_current_article_updates_after_swipe_right() throws {
@@ -96,9 +96,9 @@ Huawei finance chief faces setback in fight against US extradition
     }
     wait(for: [expect], timeout: 10)
 
-    model?.didSwipeArticleLeft()
-    model?.didSwipeArticleRight()
-    XCTAssertEqual(model?.allArticles[0], model?.currentArticle)
+    model.didSwipeArticleLeft()
+    model.didSwipeArticleRight()
+    XCTAssertEqual(model.allArticles[0], model.currentArticle)
   }
 
   func test_toggle_article_is_favourited_in_storage() throws {
@@ -107,13 +107,13 @@ Huawei finance chief faces setback in fight against US extradition
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
-    model?.toggleFavourite()
-    XCTAssertEqual(model?.currentArticle?.isFavourite, true)
+    model.toggleFavourite()
+    XCTAssertEqual(model.currentArticle?.isFavourite, true)
   }
 
   func test_error_not_nil_toggles_show_article() throws {
-    XCTAssertEqual(model?.showAlert, false)
-    model?.error = HeadlinesError.emptyPayload
-    XCTAssertEqual(model?.showAlert, true)
+    XCTAssertFalse(model.showAlert)
+    model.error = HeadlinesError.emptyPayload
+    XCTAssert(model.showAlert)
   }
 }
