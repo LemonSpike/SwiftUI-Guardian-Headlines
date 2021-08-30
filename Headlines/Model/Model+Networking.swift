@@ -94,7 +94,7 @@ extension HeadlinesModel {
       let modelNetwork = self?.services.networkService
       article.networkService = modelNetwork ?? URLSession.shared
     }
-    self.allArticles = articles
-    self.persistAllArticles(completion)
+    allArticles = articles
+    persistAllArticles(completion)
   }
 }
