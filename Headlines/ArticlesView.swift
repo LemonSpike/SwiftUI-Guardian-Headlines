@@ -10,6 +10,7 @@ import SwiftUI
 struct ArticlesView: View {
 
   @ObservedObject var model: HeadlinesModel
+  @State var presentingFavourites = false
 
   var body: some View {
     NavigationView {
@@ -32,7 +33,7 @@ struct ArticlesView: View {
             .font(.body)
             .foregroundColor(.primary)
             .lineSpacing(1)
-            .padding()
+            .padding(EdgeInsets(top: 18, leading: 18, bottom: 50, trailing: 18))
             .accessibility(identifier: Constants.articleBodyId)
         }.frame(minWidth: 0,
                 maxWidth: .infinity,
@@ -61,30 +62,34 @@ struct ArticlesView: View {
       .animation(.spring())
       .navigationTitle("Headlines 🗞")
       .navigationViewStyle(DoubleColumnNavigationViewStyle())
-      .toolbar(content: {
-        ToolbarItemGroup(placement: .bottomBar) {
-          if model.currentArticle?.isFavourite == true {
-            Image(systemName: "star.fill")
-              .foregroundColor(.accentColor)
-              .onTapGesture {
-                model.toggleFavourite()
-              }
-              .accessibility(identifier: Constants.articleStarIconId)
-          } else {
-            Image(systemName: "star")
-              .foregroundColor(.accentColor)
-              .onTapGesture {
-                model.toggleFavourite()
-              }
-              .accessibility(identifier: Constants.articleStarFillIconId)
-          }
-          Spacer()
-          Button("Favourites") {
-            print("hey")
-          }.font(.title2)
-          .foregroundColor(.accentColor)
+    }
+    .toolbar(content: {
+      ToolbarItemGroup(placement: .bottomBar) {
+        if model.currentArticle?.isFavourite == true {
+          Image(systemName: "star.fill")
+            .foregroundColor(.accentColor)
+            .onTapGesture {
+              model.toggleFavourite()
+            }
+            .accessibility(identifier: Constants.articleStarFillIconId)
+        } else {
+          Image(systemName: "star")
+            .foregroundColor(.accentColor)
+            .onTapGesture {
+              model.toggleFavourite()
+            }
+            .accessibility(identifier: Constants.articleStarIconId)
         }
-      })
+        Spacer()
+        Button("Favourites") {
+          presentingFavourites.toggle()
+        }.font(.title2)
+        .foregroundColor(.accentColor)
+      }
+    })
+    .sheet(isPresented: $presentingFavourites) {
+      FavouritesView(model: model,
+                     isDisplayed: $presentingFavourites)
     }
   }
 }
