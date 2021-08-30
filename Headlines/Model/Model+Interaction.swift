@@ -37,7 +37,7 @@ extension HeadlinesModel: ArticleInteraction {
   func toggleFavourite() {
     guard allArticles.indices.contains(currentIndex) else { return }
     services.storageService
-      .toggleArticleIsFavouritedInStorage(&allArticles[currentIndex])
+      .toggleArticleIsFavouritedInStorage(&allArticles[currentIndex], nil)
   }
 }
 

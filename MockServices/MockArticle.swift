@@ -8,7 +8,7 @@
 import Foundation
 
 final class MockArticle {
-  static let articleOne: Article = {
+  static var articleOne: Article {
     let article = Article()
     article.headline = "Rishi Sunak to announce £15bn green finance plan"
     article.rawImageURL = "https://media.guim.co.uk/" +
@@ -20,9 +20,9 @@ final class MockArticle {
                            name: "headline_stub_body.txt")
     article.body = String(data: data, encoding: .utf8)!
     return article
-  }()
+  }
 
-  static let articleTwo: Article = {
+  static var articleTwo: Article {
     let article = Article()
     article.headline = "Huawei finance chief faces setback in fight against US extradition"
     article.rawImageURL = "https://media.guim.co.uk/" +
@@ -32,5 +32,5 @@ final class MockArticle {
       .date(from: "2021-07-09T22:58:49Z")
     article.body = ""
     return article
-  }()
+  }
 }

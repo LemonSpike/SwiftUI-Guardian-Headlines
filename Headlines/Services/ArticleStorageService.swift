@@ -13,7 +13,9 @@ protocol StorageService: AnyObject {
   var delegate: StorageServiceDelegate? { get set }
 
   func retrieveAllArticlesFromStorage()
-  func toggleArticleIsFavouritedInStorage(_ article: inout Article)
+  func toggleArticleIsFavouritedInStorage(_ article: inout Article,
+                                          _ completion:
+                                            ((HeadlinesError?) -> Void)?)
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion: ((HeadlinesError?) -> Void)?)
 }
@@ -24,6 +26,13 @@ protocol StorageServiceDelegate: AnyObject {
 }
 
 final class ArticleStorageService: StorageService {
+
+  private let realm: Realm?
+
+  init(realm: Realm? = try? Realm()) {
+    self.realm = realm
+  }
+
   weak var delegate: StorageServiceDelegate?
 
   func retrieveAllArticlesFromStorage() {
@@ -31,7 +40,7 @@ final class ArticleStorageService: StorageService {
       return
     }
     DispatchQueue.global().sync {
-      guard let realm = try? Realm() else { return }
+      guard let realm = realm else { return }
       delegate.allArticles = Array(realm.objects(Article.self))
     }
   }
@@ -39,7 +48,7 @@ final class ArticleStorageService: StorageService {
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion: ((HeadlinesError?) -> Void)?) {
     DispatchQueue.global().sync {
-      guard let realm = try? Realm() else {
+      guard let realm = realm else {
         completion?(.realmInstanceCreationFailed)
         return
       }
@@ -55,13 +64,22 @@ final class ArticleStorageService: StorageService {
     }
   }
 
-  func toggleArticleIsFavouritedInStorage(_ article: inout Article) {
+  func toggleArticleIsFavouritedInStorage(_ article: inout Article,
+                                          _ completion:
+                                            ((HeadlinesError?) -> Void)? = nil)
+  {
     DispatchQueue.global().sync {
-      guard let realm = try? Realm() else {
+      guard let realm = realm else {
+        completion?(.realmInstanceCreationFailed)
         return
       }
-      try? realm.write {
-        article.isFavourite.toggle()
+      do {
+        try realm.write {
+          article.isFavourite.toggle()
+          completion?(nil)
+        }
+      } catch {
+        completion?(.articlePersistenceFailed(error: error))
       }
     }
   }

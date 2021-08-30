@@ -37,11 +37,10 @@ final class MockStorageService: StorageService {
     }
   }
 
-  func toggleArticleIsFavouritedInStorage(_ article: inout Article) {
-    let changer = delegate?.allArticles.first { candidate in
-      candidate.headline == article.headline
-    }
-    changer?.isFavourite.toggle()
+  func toggleArticleIsFavouritedInStorage(_ article: inout Article,
+                                          _ completion:
+                                            ((HeadlinesError?) -> Void)?) {
+    article.isFavourite.toggle()
   }
 
   func persistAllArticlesToStorage(_ articles: [Article],

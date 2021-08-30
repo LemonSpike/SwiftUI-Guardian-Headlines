@@ -1,5 +1,5 @@
 //
-//  HeadlinesTests.swift
+//  HeadlinesModelTests.swift
 //  HeadlinesTests
 //
 //  Created by Pranav Kasetti on 27/08/2021.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Headlines
 
-class HeadlinesTests: XCTestCase {
+class HeadlinesModelTests: XCTestCase {
 
   var services: HeadlineServices = .mock
   var model: HeadlinesModel = .init(services: .mock)
