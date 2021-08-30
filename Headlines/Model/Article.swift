@@ -9,7 +9,8 @@ import Foundation
 import Combine
 import RealmSwift
 
-final class Article: Object {
+final class Article: Object, Identifiable {
+  @Persisted var id = UUID()
   @Persisted var headline: String = ""
   @Persisted var body: String = ""
   @Persisted var published: Date?
