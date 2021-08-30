@@ -44,6 +44,7 @@
 		9FC3CE4626DC41760039D626 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF79BA26DAADAC003EAD49 /* Constants.swift */; };
 		9FC3CE4826DD13D90039D626 /* HeadlinesJSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3CE4726DD13D90039D626 /* HeadlinesJSONParsingTests.swift */; };
 		9FC3CE4A26DD1F8D0039D626 /* ArticleStorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3CE4926DD1F8D0039D626 /* ArticleStorageServiceTests.swift */; };
+		9FC3D13926DD83160039D626 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3D13826DD83160039D626 /* FavouritesView.swift */; };
 		9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */; };
 		9FEED98426D8D1CE000819EA /* ArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEED98326D8D1CE000819EA /* ArticlesView.swift */; };
 		9FEED98626D8D1D4000819EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEED98526D8D1D4000819EA /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		9FC3CE4226DB5D0E0039D626 /* headline_two_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headline_two_img.jpg; sourceTree = "<group>"; };
 		9FC3CE4726DD13D90039D626 /* HeadlinesJSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesJSONParsingTests.swift; sourceTree = "<group>"; };
 		9FC3CE4926DD1F8D0039D626 /* ArticleStorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStorageServiceTests.swift; sourceTree = "<group>"; };
+		9FC3D13826DD83160039D626 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		9FEED97E26D8D1CE000819EA /* Headlines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesApp.swift; sourceTree = "<group>"; };
 		9FEED98326D8D1CE000819EA /* ArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				9FEED98126D8D1CE000819EA /* HeadlinesApp.swift */,
 				9FEED98326D8D1CE000819EA /* ArticlesView.swift */,
+				9FC3D13826DD83160039D626 /* FavouritesView.swift */,
 				9FBF79B926DAAD0E003EAD49 /* Constants */,
 				9FEED9C826D8F456000819EA /* Helpers */,
 				9FBF799B26DA9573003EAD49 /* Model */,
@@ -439,6 +442,7 @@
 				9FC3CE2926DB36EF0039D626 /* MockServices.swift in Sources */,
 				9FBF79CD26DAFE95003EAD49 /* Model+Networking.swift in Sources */,
 				9FEED98226D8D1CE000819EA /* HeadlinesApp.swift in Sources */,
+				9FC3D13926DD83160039D626 /* FavouritesView.swift in Sources */,
 				9FBF79C926DAF4F7003EAD49 /* Services+Init.swift in Sources */,
 				9FBF79D026DB0866003EAD49 /* MockFixture.swift in Sources */,
 				9FC3CE2F26DB3A450039D626 /* MockStorageService.swift in Sources */,

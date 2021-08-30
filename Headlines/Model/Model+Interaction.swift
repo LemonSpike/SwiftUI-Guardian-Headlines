@@ -16,7 +16,8 @@ private protocol ArticleInteraction {
 
 // MARK: ArticleSelection
 private protocol ArticleSelection {
-  mutating func didSelectFavouritedArticle(atIndex index: Int)
+  func didSelectFavouritedArticle(atIndex index: Int)
+  func didDeselectFavouritedArticle(atIndex index: Int)
 }
 
 // MARK: Handle interactions.
@@ -48,5 +49,13 @@ extension HeadlinesModel: ArticleSelection {
     guard let index = allArticles
             .firstIndex(of: favouritedArticles[index]) else { return }
     currentIndex = index
+  }
+
+  func didDeselectFavouritedArticle(atIndex index: Int) {
+    guard favouritedArticles.indices.contains(index) else { return }
+    guard let index = allArticles
+            .firstIndex(of: favouritedArticles[index]) else { return }
+    services.storageService
+      .toggleArticleIsFavouritedInStorage(&allArticles[index], nil)
   }
 }
