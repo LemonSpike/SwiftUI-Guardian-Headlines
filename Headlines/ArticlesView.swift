@@ -12,56 +12,64 @@ struct ArticlesView: View {
   @ObservedObject var model: HeadlinesModel
   @State var presentingFavourites = false
 
+  private func content() -> some View {
+    return ScrollView(.vertical, showsIndicators: true) {
+      VStack(alignment: .leading) {
+        ZStack(alignment: .bottom) {
+          if let data = model
+              .currentArticle?.imageData, let image = UIImage(data: data) {
+            Image(uiImage: image)
+              .resizable()
+              .scaledToFit()
+              .accessibility(identifier: Constants.articleImageId)
+          }
+          Text(model.currentArticle?.headline ?? "")
+            .font(.title)
+            .foregroundColor(.white)
+            .padding()
+        }
+        Text(model.currentArticle?.body ?? "")
+          .font(.body)
+          .foregroundColor(.primary)
+          .lineSpacing(1)
+          .padding(EdgeInsets(top: 18, leading: 18, bottom: 50, trailing: 18))
+          .accessibility(identifier: Constants.articleBodyId)
+      }.frame(minWidth: 0,
+              maxWidth: .infinity,
+              minHeight: 0,
+              maxHeight: .infinity,
+              alignment: .topLeading)
+      .padding()
+      .gesture(
+        DragGesture(coordinateSpace: .local)
+          .onEnded { gesture in
+            let translation = gesture.translation
+            if translation.width > 20 {
+              model.didSwipeArticleRight()
+            } else if translation.width < -20 {
+              model.didSwipeArticleLeft()
+            }
+          }
+      )
+    }
+    .alert(isPresented: $model.showAlert) {
+      Alert(title: Text("An error occurred"),
+            message: Text("Please try again later."),
+            dismissButton: Alert.Button.default(Text("Ok"))
+      )
+    }
+    .animation(.spring())
+    .navigationTitle("Headlines 🗞")
+    .navigationViewStyle(DoubleColumnNavigationViewStyle())
+  }
+
   var body: some View {
     NavigationView {
-      ScrollView(.vertical, showsIndicators: true) {
-        VStack(alignment: .leading) {
-          ZStack(alignment: .bottom) {
-            if let data = model
-                .currentArticle?.imageData, let image = UIImage(data: data) {
-              Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .accessibility(identifier: Constants.articleImageId)
-            }
-            Text(model.currentArticle?.headline ?? "")
-              .font(.title)
-              .foregroundColor(.white)
-              .padding()
-          }
-          Text(model.currentArticle?.body ?? "")
-            .font(.body)
-            .foregroundColor(.primary)
-            .lineSpacing(1)
-            .padding(EdgeInsets(top: 18, leading: 18, bottom: 50, trailing: 18))
-            .accessibility(identifier: Constants.articleBodyId)
-        }.frame(minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 0,
-                maxHeight: .infinity,
-                alignment: .topLeading)
-        .padding()
-        .gesture(
-          DragGesture(coordinateSpace: .local)
-            .onEnded { gesture in
-              let translation = gesture.translation
-              if translation.width > 20 {
-                model.didSwipeArticleRight()
-              } else if translation.width < -20 {
-                model.didSwipeArticleLeft()
-              }
-            }
-        )
+      if (model.currentArticle != nil) {
+        content()
+      } else {
+        ProgressView()
       }
-      .alert(isPresented: $model.showAlert) {
-        Alert(title: Text("An error occurred"),
-              message: Text("Please try again later."),
-              dismissButton: Alert.Button.default(Text("Ok"))
-        )
-      }
-      .animation(.spring())
-      .navigationTitle("Headlines 🗞")
-      .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
     .toolbar(content: {
       ToolbarItemGroup(placement: .bottomBar) {
