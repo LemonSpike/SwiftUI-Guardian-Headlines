@@ -89,6 +89,8 @@ struct ArticlesView: View {
   }
 }
 
+// This macros is to exclude previews from UI test code coverage reports.
+#if DEBUG
 struct ArticlesView_Previews: PreviewProvider {
   static var model: HeadlinesModel = {
     let services = HeadlineServices.mock
@@ -108,3 +110,4 @@ struct ArticlesView_Previews: PreviewProvider {
     }
   }
 }
+#endif

@@ -27,6 +27,7 @@ class HeadlinesUITests: XCTestCase {
         headers: ["Content-Type": "image/jpeg"]
       )
     }
+    HTTPStubs.setEnabled(true)
     continueAfterFailure = false
   }
 
@@ -34,8 +35,24 @@ class HeadlinesUITests: XCTestCase {
     HTTPStubs.removeAllStubs()
   }
 
+  // This test requires the device/simulator to be reset to clear the article
+  // cache.
+  func testFailedRequestDisplaysErrorAlert() throws {
+    HTTPStubs.removeAllStubs()
+
+    let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
+    app.launch()
+
+    let alert = app.alerts["An error occurred"]
+    XCTAssert(alert.waitForExistence(timeout: 10))
+
+    alert.staticTexts["An error occurred"].tap()
+    alert.staticTexts["Please try again later."].tap()
+    alert.buttons["Ok"].tap()
+  }
+
   func testArticleSwipeLeftUpdatesArticle() throws {
-    let app = XCUIApplication()
+    let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
     app.launch()
 
     XCTAssert(app
@@ -53,7 +70,7 @@ class HeadlinesUITests: XCTestCase {
   }
 
   func testArticleSwipeRightUpdatesArticle() {
-    let app = XCUIApplication()
+    let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
     app.launch()
 
     XCTAssert(app.staticTexts["Rishi Sunak to announce £15bn green finance plan"].waitForExistence(timeout: 5))
@@ -69,7 +86,7 @@ class HeadlinesUITests: XCTestCase {
   }
 
   func testFavouritingArticleUpdatesIcon() {
-    let app = XCUIApplication()
+    let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
     app.launch()
 
     XCTAssert(app.images["favorite"].waitForExistence(timeout: 5))
@@ -91,7 +108,8 @@ class HeadlinesUITests: XCTestCase {
   func testLaunchPerformance() throws {
     if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
       measure(metrics: [XCTApplicationLaunchMetric()]) {
-        XCUIApplication().launch()
+        XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
+          .launch()
       }
     }
   }

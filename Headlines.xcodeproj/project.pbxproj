@@ -60,13 +60,6 @@
 			remoteGlobalIDString = 9FEED97D26D8D1CE000819EA;
 			remoteInfo = Headlines;
 		};
-		9FEED99B26D8D1D4000819EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9FEED97626D8D1CE000819EA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9FEED97D26D8D1CE000819EA;
-			remoteInfo = Headlines;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -333,7 +326,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9FEED99C26D8D1D4000819EA /* PBXTargetDependency */,
 			);
 			name = HeadlinesUITests;
 			packageProductDependencies = (
@@ -361,7 +353,6 @@
 					};
 					9FEED99926D8D1D4000819EA = {
 						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 9FEED97D26D8D1CE000819EA;
 					};
 				};
 			};
@@ -482,11 +473,6 @@
 			isa = PBXTargetDependency;
 			target = 9FEED97D26D8D1CE000819EA /* Headlines */;
 			targetProxy = 9FEED99026D8D1D4000819EA /* PBXContainerItemProxy */;
-		};
-		9FEED99C26D8D1D4000819EA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9FEED97D26D8D1CE000819EA /* Headlines */;
-			targetProxy = 9FEED99B26D8D1D4000819EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -709,9 +695,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kasprasolutions.HeadlinesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Headlines;
 			};
 			name = Debug;
 		};
@@ -729,9 +715,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kasprasolutions.HeadlinesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Headlines;
 			};
 			name = Release;
 		};
