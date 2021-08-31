@@ -51,9 +51,27 @@ class HeadlinesUITests: XCTestCase {
     alert.buttons["Ok"].tap()
   }
 
+  func testOnboardingAlert() throws {
+    let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
+    app.launch()
+
+    let alert = app.alerts["Welcome to Headlines 🗞"]
+    XCTAssert(alert.waitForExistence(timeout: 5))
+
+    let predicate = NSPredicate(format: "label CONTAINS[c] %@",
+                                "Swipe ⬅️ for the next article.\nSwipe ➡️ for the previous article.\nFavorite articles with the ⭐️ icon.\nView your Favourites with the Favourites button.")
+    XCTAssert(alert.staticTexts.containing(predicate).count > 0)
+    alert.buttons["Ok"].tap()
+  }
+
   func testArticleSwipeLeftUpdatesArticle() throws {
     let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
     app.launch()
+
+    let alert = app.alerts["Welcome to Headlines 🗞"]
+    XCTAssert(alert
+                .waitForExistence(timeout: 5))
+    alert.buttons["Ok"].tap()
 
     XCTAssert(app
                 .staticTexts["Rishi Sunak to announce £15bn green finance plan"]
@@ -73,6 +91,11 @@ class HeadlinesUITests: XCTestCase {
     let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
     app.launch()
 
+    let alert = app.alerts["Welcome to Headlines 🗞"]
+    XCTAssert(alert
+                .waitForExistence(timeout: 5))
+    alert.buttons["Ok"].tap()
+
     XCTAssert(app.staticTexts["Rishi Sunak to announce £15bn green finance plan"].waitForExistence(timeout: 5))
 
     app.staticTexts["Rishi Sunak to announce £15bn green finance plan"]
@@ -88,6 +111,11 @@ class HeadlinesUITests: XCTestCase {
   func testFavouritingArticleUpdatesIcon() {
     let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")
     app.launch()
+
+    let alert = app.alerts["Welcome to Headlines 🗞"]
+    XCTAssert(alert
+                .waitForExistence(timeout: 5))
+    alert.buttons["Ok"].tap()
 
     XCTAssert(app.images["favorite"].waitForExistence(timeout: 5))
     if (!app.images["articleStarIcon"].exists) {

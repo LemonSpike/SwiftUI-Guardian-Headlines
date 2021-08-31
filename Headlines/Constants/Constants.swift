@@ -14,5 +14,7 @@ struct Constants {
   static let articleImageId = "articleImage"
   static let articleBodyId = "articleBody"
   static let articleStarIconId = "articleStarIcon"
+  static let articleStarIconName = "star"
   static let articleStarFillIconId = "articleStarFillIcon"
+  static let articleStarFillIconName = "star.fill"
 }

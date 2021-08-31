@@ -8,14 +8,28 @@
 import Foundation
 
 extension String {
+
+  private enum Constants {
+    static let paragraphTags = "</p> <p>"
+    static let doubleLines = "\n\n"
+    static let tagMatcher = "<[^>]+>"
+    static let emptyString = ""
+    static let startLocation = 0
+  }
+
   var strippingTags: String {
     var result = self
-      .replacingOccurrences(of: "</p> <p>", with: "\n\n") as NSString
+      .replacingOccurrences(of: Constants.paragraphTags,
+                            with: Constants.doubleLines) as NSString
 
-    var range = result.range(of: "<[^>]+>", options: .regularExpression)
+    var range = result.range(of: Constants.tagMatcher,
+                             options: .regularExpression)
     while range.location != NSNotFound {
-      result = result.replacingCharacters(in: range, with: "") as NSString
-      range = result.range(of: "<[^>]+>", options: .regularExpression)
+      result = result
+        .replacingCharacters(in: range,
+                             with: Constants.emptyString) as NSString
+      range = result.range(of: Constants.tagMatcher,
+                           options: .regularExpression)
     }
 
     return result as String
@@ -27,7 +41,8 @@ extension String {
             try? NSDataDetector(types: checkingType) else { return nil }
     let matches = detector.matches(in: self,
                                    options: [],
-                                   range: NSRange(location: 0,
+                                   range: NSRange(location:
+                                                    Constants.startLocation,
                                                   length: (self as NSString)
                                                     .length))
     return matches.first?.url

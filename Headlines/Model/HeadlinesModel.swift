@@ -12,11 +12,13 @@ final class HeadlinesModel: ObservableObject {
   @Published(initialValue: []) var allArticles: [Article]
   var error: HeadlinesError? {
     didSet {
-      showAlert = (error != nil)
+      showErrorAlert = (error != nil)
     }
   }
 
-  @Published var showAlert = false
+  @Published var showErrorAlert = false
+
+  @Published var showOnboardingAlert = false
 
   var favouritedArticles: [ArticleReader] {
     allArticles

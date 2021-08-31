@@ -23,7 +23,7 @@ struct FavouritesView: View {
               isDisplayed = false
             }
           Spacer()
-          Image(systemName: "star.fill")
+          Image(systemName: Constants.articleStarFillIconName)
             .foregroundColor(.accentColor)
             .gesture(
               TapGesture().onEnded { _ in
@@ -35,11 +35,12 @@ struct FavouritesView: View {
       }.listStyle(InsetGroupedListStyle())
       .navigationViewStyle(StackNavigationViewStyle())
       .toolbar(content: {
-        Button("Dismiss") {
+        Button(Strings.buttonDismiss) {
           isDisplayed = false
         }
       })
-      .navigationBarTitle(Text("Favourite Articles ⭐️"))
+      .navigationBarTitle(Strings.favouritesScreenTitle)
+      .preferredColorScheme(.dark)
     }
   }
 }
@@ -59,10 +60,8 @@ struct FavouritesView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       FavouritesView(model: model, isDisplayed: $isDisplayed)
-        .colorScheme(.light)
         .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
       FavouritesView(model: model, isDisplayed: $isDisplayed)
-        .colorScheme(.dark)
         .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro"))
     }
   }

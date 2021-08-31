@@ -112,8 +112,8 @@ Huawei finance chief faces setback in fight against US extradition
   }
 
   func test_error_not_nil_toggles_show_article() throws {
-    XCTAssertFalse(model.showAlert)
+    XCTAssertFalse(model.showErrorAlert)
     model.error = HeadlinesError.emptyPayload
-    XCTAssert(model.showAlert)
+    XCTAssert(model.showErrorAlert)
   }
 }

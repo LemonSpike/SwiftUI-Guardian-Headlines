@@ -31,9 +31,10 @@ extension HeadlinesModel {
   private func constructArticlesURLWithQueryParams(baseURL: String,
                                                    path: String =
                                                     URLs.articleSearchPath,
-                                                   query: String = "finance",
+                                                   query: String =
+                                                    URLs.articleFinanceQuery,
                                                    showFields: String =
-                                                    "main,body",
+                                                    URLs.articleShowFieldsValue,
                                                    apiKey: String = Constants
                                                     .APIKey
   ) -> URL? {
@@ -52,7 +53,8 @@ extension HeadlinesModel {
   private func makeArticlesRequest(_ completeURL: URL,
                                    _ completion: (() -> Void)?) {
     let request = URLRequest(url: completeURL)
-    task = services.networkService.fetchData(with: request) { [weak self] data, response, error in
+    task = services.networkService
+      .fetchData(with: request) { [weak self] data, response, error in
       do {
         if let error = error {
           throw HeadlinesError.networkRequestError(error: error)
