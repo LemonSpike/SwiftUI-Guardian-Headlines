@@ -20,14 +20,14 @@ class HeadlinesModelTests: XCTestCase {
 
   func test_articles_are_downloaded_through_network_on_first_fetch() throws {
     let storage = model.services.storageService as? MockStorageService
-    XCTAssertEqual(storage?.retrievedFromStorage , false)
+    XCTAssertEqual(storage?.retrievedFromStorage, false)
     XCTAssertEqual(model.allArticles, [])
     let expect = expectation(description: "Article fetched from network")
     services.setDelegate(delegate: model) {
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
-    XCTAssertEqual(storage?.retrievedFromStorage , false)
+    XCTAssertEqual(storage?.retrievedFromStorage, false)
     XCTAssertEqual(model.allArticles.count, 2)
     XCTAssertEqual(model.allArticles[0].headline,
                    "Rishi Sunak to announce £15bn green finance plan")

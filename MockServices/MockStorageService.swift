@@ -38,8 +38,7 @@ final class MockStorageService: StorageService {
   }
 
   func toggleArticleIsFavouritedInStorage(_ article: inout Article,
-                                          _ completion:
-                                            ((HeadlinesError?) -> Void)?) {
+                                          _ completion: ((HeadlinesError?) -> Void)?) {
     article.isFavourite.toggle()
   }
 

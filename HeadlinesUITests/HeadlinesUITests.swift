@@ -87,7 +87,9 @@ class HeadlinesUITests: XCTestCase {
     app.staticTexts["Rishi Sunak to announce £15bn green finance plan"]
       .swipeLeft()
 
-    XCTAssert(app.staticTexts["Huawei finance chief faces setback in fight against US extradition"].waitForExistence(timeout: 5))
+    XCTAssert(app.staticTexts["""
+Huawei finance chief faces setback in fight against US extradition
+"""].waitForExistence(timeout: 5))
     XCTAssert(app.images["articleImage"].waitForExistence(timeout: 5))
     XCTAssert(app.staticTexts["articleBody"].waitForExistence(timeout: 5))
   }
@@ -105,10 +107,17 @@ class HeadlinesUITests: XCTestCase {
 
     app.staticTexts["Rishi Sunak to announce £15bn green finance plan"]
       .swipeLeft()
-    XCTAssert(app.staticTexts["Huawei finance chief faces setback in fight against US extradition"].waitForExistence(timeout: 5))
+    XCTAssert(
+      app.staticTexts["""
+Huawei finance chief faces setback in fight against US extradition
+"""].waitForExistence(timeout: 5))
 
-    app.staticTexts["Huawei finance chief faces setback in fight against US extradition"].swipeRight()
-    XCTAssert(app.staticTexts["Rishi Sunak to announce £15bn green finance plan"].waitForExistence(timeout: 5))
+    app.staticTexts["""
+Huawei finance chief faces setback in fight against US extradition
+"""].swipeRight()
+    XCTAssert(app.staticTexts["""
+Rishi Sunak to announce £15bn green finance plan
+"""].waitForExistence(timeout: 5))
     XCTAssert(app.images["articleImage"].waitForExistence(timeout: 5))
     XCTAssert(app.staticTexts["articleBody"].waitForExistence(timeout: 5))
   }
@@ -123,7 +132,7 @@ class HeadlinesUITests: XCTestCase {
     alert.buttons["Ok"].tap()
 
     XCTAssert(app.images["favorite"].waitForExistence(timeout: 5))
-    if (!app.images["articleStarIcon"].exists) {
+    if !app.images["articleStarIcon"].exists {
       XCTAssert(app.images["articleStarFillIcon"].waitForExistence(timeout: 5))
       app.images["articleStarFillIcon"].tap()
       XCTAssert(app.images["articleStarIcon"].waitForExistence(timeout: 5))

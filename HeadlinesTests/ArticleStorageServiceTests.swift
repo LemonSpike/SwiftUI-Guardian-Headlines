@@ -11,7 +11,7 @@ import RealmSwift
 
 class ArticleStorageServiceTests: XCTestCase {
 
-  var delegate: MockStorageDelegate = .init()
+  var mockModel: MockStorageDelegate = .init()
   var storageService: ArticleStorageService = .init(realmMode: .inMemory)
   var realm: Realm?
   let realmStorageQueue = realmQueue
@@ -20,8 +20,8 @@ class ArticleStorageServiceTests: XCTestCase {
     storageService = ArticleStorageService(realmMode: .inMemory,
                                            realmStorageQueue: realmStorageQueue)
     realm = storageService.realm
-    delegate = MockStorageDelegate()
-    storageService.delegate = delegate
+    mockModel = MockStorageDelegate()
+    storageService.delegate = mockModel
   }
 
   override func tearDownWithError() throws {
@@ -56,7 +56,7 @@ class ArticleStorageServiceTests: XCTestCase {
   func test_retrieve_fails_with_invalid_realm_instance() throws {
     storageService.realm = nil
     storageService.retrieveAllArticlesFromStorage()
-    XCTAssertEqual(delegate.allArticles, [])
+    XCTAssertEqual(mockModel.allArticles, [])
   }
 
   func test_persist_updates_realm() throws {
@@ -76,13 +76,13 @@ class ArticleStorageServiceTests: XCTestCase {
                                                 MockArticle.articleTwo], nil)
     storageService.retrieveAllArticlesFromStorage()
 
-    XCTAssertEqual(delegate.allArticles.count, 2)
+    XCTAssertEqual(mockModel.allArticles.count, 2)
 
     realmStorageQueue.sync {
       XCTAssertEqual(MockArticle.articleOne.headline,
-                     delegate.allArticles[0].headline)
+                     mockModel.allArticles[0].headline)
       XCTAssertEqual(MockArticle.articleTwo.headline,
-                     delegate.allArticles[1].headline)
+                     mockModel.allArticles[1].headline)
     }
   }
 
@@ -127,7 +127,7 @@ class ArticleStorageServiceTests: XCTestCase {
     storageService.persistAllArticlesToStorage([article], nil)
     let expect = XCTestExpectation(description: "Articles favourited")
     storageService.retrieveAllArticlesFromStorage()
-    var delegateReader = ArticleReader(article: delegate.allArticles[0],
+    var delegateReader = ArticleReader(article: mockModel.allArticles[0],
                                        networkService: MockNetworkService())
     XCTAssertFalse(delegateReader.isFavourite)
     var receivedError: HeadlinesError?
@@ -139,7 +139,7 @@ class ArticleStorageServiceTests: XCTestCase {
     expect.fulfill()
     wait(for: [expect], timeout: 10)
     XCTAssertNil(receivedError)
-    delegateReader = ArticleReader(article: delegate.allArticles[0],
+    delegateReader = ArticleReader(article: mockModel.allArticles[0],
                                    networkService: MockNetworkService())
     XCTAssert(delegateReader.isFavourite)
   }

@@ -14,12 +14,12 @@ struct ArticlesContainerView: View {
 
   var body: some View {
     NavigationView {
-      if (model.currentArticle != nil) {
+      if model.currentArticle != nil {
         ArticlesView(model: model)
           .alert(isPresented: $model.showOnboardingAlert) {
             Alert(title: Text(Strings.appTitle),
                   message: Text(Strings.onBoardingMessage),
-                  dismissButton: Alert.Button.default(Text("Ok")))
+                  dismissButton: Alert.Button.default(Text(Strings.alertOk)))
           }
       } else {
         ProgressView()
@@ -28,7 +28,7 @@ struct ArticlesContainerView: View {
             Alert(title: Text(Strings.errorAlertTitle),
                   message: Text(Strings.errorAlertMessage),
                   dismissButton: Alert.Button
-                    .default(Text(Strings.errorAlertOk))
+                    .default(Text(Strings.alertOk))
             )
           }
       }

@@ -14,8 +14,7 @@ protocol StorageService: AnyObject {
 
   func retrieveAllArticlesFromStorage()
   func toggleArticleIsFavouritedInStorage(_ article: inout Article,
-                                          _ completion:
-                                            ((HeadlinesError?) -> Void)?)
+                                          _ completion: ((HeadlinesError?) -> Void)?)
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion: ((HeadlinesError?) -> Void)?)
 }
@@ -37,12 +36,12 @@ final class ArticleStorageService: StorageService {
     self.realmStorageQueue = realmStorageQueue
     realmStorageQueue.sync {
       switch realmMode {
-        case .inMemory:
-          self.realm = try?
-            Realm(configuration: .init(inMemoryIdentifier: realmInMemoryId),
-                  queue: realmStorageQueue)
-        case .persisted:
-          self.realm = try? Realm(queue: realmStorageQueue)
+      case .inMemory:
+        self.realm = try?
+          Realm(configuration: .init(inMemoryIdentifier: realmInMemoryId),
+                queue: realmStorageQueue)
+      case .persisted:
+        self.realm = try? Realm(queue: realmStorageQueue)
       }
     }
   }
@@ -81,9 +80,7 @@ final class ArticleStorageService: StorageService {
   }
 
   func toggleArticleIsFavouritedInStorage(_ article: inout Article,
-                                          _ completion:
-                                            ((HeadlinesError?) -> Void)? = nil)
-  {
+                                          _ completion: ((HeadlinesError?) -> Void)? = nil) {
     realmStorageQueue.sync { [weak self, article] in
       guard let realm = self?.realm else {
         completion?(.realmInstanceCreationFailed)

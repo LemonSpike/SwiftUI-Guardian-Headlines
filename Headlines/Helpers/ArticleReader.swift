@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class ArticleReader {
+final class ArticleReader: Identifiable {
   let article: Article
   let networkService: NetworkService
   private var task: AnyCancellable?
@@ -53,7 +53,7 @@ final class ArticleReader {
   }
 }
 
-//MARK: Networking
+// MARK: Networking
 extension ArticleReader {
   var imageURL: URL? {
     var rawImageURL: String?

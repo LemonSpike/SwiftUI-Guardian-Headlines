@@ -14,9 +14,8 @@ struct FavouritesView: View {
 
   var body: some View {
     NavigationView {
-      let articles = model.favouritedArticles.enumerated().map { $0 }
       let numFavs = model.numberOfFavouritedArticles
-      List(articles, id: \.element.id) { index, article in
+      List(model.favouritedArticles) { article in
         FavouritesCell(model: model,
                        isDisplayed: $isDisplayed,
                        article: article)
