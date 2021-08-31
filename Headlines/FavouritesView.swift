@@ -34,6 +34,11 @@ struct FavouritesView: View {
         }
       }.listStyle(InsetGroupedListStyle())
       .navigationViewStyle(StackNavigationViewStyle())
+      .toolbar(content: {
+        Button("Dismiss") {
+          isDisplayed = false
+        }
+      })
       .navigationBarTitle(Text("Favourite Articles ⭐️"))
     }
   }

@@ -44,7 +44,7 @@ struct ArticlesContainerView: View {
         .foregroundColor(.accentColor)
       }
     })
-    .sheet(isPresented: $presentingFavourites) {
+    .fullScreenCover(isPresented: $presentingFavourites) {
       FavouritesView(model: model,
                      isDisplayed: $presentingFavourites)
     }
