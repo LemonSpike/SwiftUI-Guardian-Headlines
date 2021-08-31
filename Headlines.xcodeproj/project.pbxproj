@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F14B0FC26DE8F0C0061F192 /* FavouritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F14B0FB26DE8F0C0061F192 /* FavouritesCell.swift */; };
 		9F14B0FE26DE9E060061F192 /* DateFormatter+Headlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F14B0FD26DE9E060061F192 /* DateFormatter+Headlines.swift */; };
+		9F14B10026DEB2730061F192 /* RealmMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F14B0FF26DEB2730061F192 /* RealmMode.swift */; };
 		9FBF797026D94E28003EAD49 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9FBF796F26D94E28003EAD49 /* OHHTTPStubsSwift */; };
 		9FBF799A26DA9493003EAD49 /* HeadlinesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF799926DA9493003EAD49 /* HeadlinesModel.swift */; };
 		9FBF799F26DA9573003EAD49 /* HeadlinesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF799C26DA9573003EAD49 /* HeadlinesResponse.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		9F14B0FB26DE8F0C0061F192 /* FavouritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesCell.swift; sourceTree = "<group>"; };
 		9F14B0FD26DE9E060061F192 /* DateFormatter+Headlines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Headlines.swift"; sourceTree = "<group>"; };
+		9F14B0FF26DEB2730061F192 /* RealmMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMode.swift; sourceTree = "<group>"; };
 		9FBF799926DA9493003EAD49 /* HeadlinesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesModel.swift; sourceTree = "<group>"; };
 		9FBF799C26DA9573003EAD49 /* HeadlinesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesResponse.swift; sourceTree = "<group>"; };
 		9FBF799D26DA9573003EAD49 /* HeadlinesError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesError.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				9FBF799D26DA9573003EAD49 /* HeadlinesError.swift */,
 				9FBF799E26DA9573003EAD49 /* Article.swift */,
 				9FC3CE2626DB2A840039D626 /* Article+Decodable.swift */,
+				9F14B0FF26DEB2730061F192 /* RealmMode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				9FBF79C726DAF309003EAD49 /* Model+Interaction.swift in Sources */,
 				9FC3CE2C26DB39C30039D626 /* MockNetworkService.swift in Sources */,
 				9FC3CE3126DB3B6C0039D626 /* MockArticle.swift in Sources */,
+				9F14B10026DEB2730061F192 /* RealmMode.swift in Sources */,
 				9FC3D13F26DE6B370039D626 /* Strings.swift in Sources */,
 				9FBF79C526DAEE4F003EAD49 /* HeadlineServices.swift in Sources */,
 				9FBF799A26DA9493003EAD49 /* HeadlinesModel.swift in Sources */,
