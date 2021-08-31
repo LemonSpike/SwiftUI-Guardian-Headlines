@@ -42,9 +42,13 @@ final class ArticleReader {
     }
   }
 
-  var published: Date? {
+  var published: String? {
     realmQueue.sync {
-      article.published
+      if let published = article.published {
+        return DateFormatter.headlines.string(from: published)
+      } else {
+        return nil
+      }
     }
   }
 }

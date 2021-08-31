@@ -16,8 +16,8 @@ private protocol ArticleInteraction {
 
 // MARK: ArticleSelection
 private protocol ArticleSelection {
-  func didSelectFavouritedArticle(atIndex index: Int)
-  func didDeselectFavouritedArticle(atIndex index: Int)
+  func didSelectFavouritedArticle(article: ArticleReader)
+  func didDeselectFavouritedArticle(article: ArticleReader)
 }
 
 // MARK: Handle interactions.
@@ -44,17 +44,16 @@ extension HeadlinesModel: ArticleInteraction {
 
 // MARK: Handle Favourites View cell selection.
 extension HeadlinesModel: ArticleSelection {
-  func didSelectFavouritedArticle(atIndex index: Int) {
-    guard favouritedArticles.indices.contains(index) else { return }
-    guard let index = allArticles
-            .firstIndex(of: favouritedArticles[index].article) else { return }
+  func didSelectFavouritedArticle(article: ArticleReader) {
+    guard article.isFavourite else { return }
+    guard let index = allArticles.firstIndex(of: article.article) else { return }
     currentIndex = index
   }
 
-  func didDeselectFavouritedArticle(atIndex index: Int) {
-    guard favouritedArticles.indices.contains(index) else { return }
+  func didDeselectFavouritedArticle(article: ArticleReader) {
+    guard article.isFavourite else { return }
     guard let index = allArticles
-            .firstIndex(of: favouritedArticles[index].article) else { return }
+            .firstIndex(of: article.article) else { return }
     services.storageService
       .toggleArticleIsFavouritedInStorage(&allArticles[index], nil)
   }

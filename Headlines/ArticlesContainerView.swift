@@ -24,7 +24,6 @@ struct ArticlesContainerView: View {
       } else {
         ProgressView()
           .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
-          .frame(width: 300, height: 300, alignment: .center)
           .alert(isPresented: $model.showErrorAlert) {
             Alert(title: Text(Strings.errorAlertTitle),
                   message: Text(Strings.errorAlertMessage),

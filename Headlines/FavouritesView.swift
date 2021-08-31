@@ -15,23 +15,11 @@ struct FavouritesView: View {
   var body: some View {
     NavigationView {
       let articles = model.favouritedArticles.enumerated().map { $0 }
+      let numFavs = model.numberOfFavouritedArticles
       List(articles, id: \.element.id) { index, article in
-        HStack {
-          Text(article.headline)
-            .onTapGesture {
-              model.didSelectFavouritedArticle(atIndex: index)
-              isDisplayed = false
-            }
-          Spacer()
-          Image(systemName: Constants.articleStarFillIconName)
-            .foregroundColor(.accentColor)
-            .gesture(
-              TapGesture().onEnded { _ in
-                model.didDeselectFavouritedArticle(atIndex: index)
-              }
-            )
-            .accessibility(identifier: Constants.articleStarFillIconId)
-        }
+        FavouritesCell(model: model,
+                       isDisplayed: $isDisplayed,
+                       article: article)
       }.listStyle(InsetGroupedListStyle())
       .navigationViewStyle(StackNavigationViewStyle())
       .toolbar(content: {
@@ -39,7 +27,7 @@ struct FavouritesView: View {
           isDisplayed = false
         }
       })
-      .navigationBarTitle(Strings.favouritesScreenTitle)
+      .navigationBarTitle("\(numFavs) \(Strings.favouritesScreenTitle)")
       .preferredColorScheme(.dark)
     }
   }
