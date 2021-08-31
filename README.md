@@ -22,11 +22,6 @@ testable, scalable and maintainable SwiftUI code.
 2. Test and improve accessibility support.
 3. Add more performance tests for JSON parsing.
 
-<img src="./Headlines/Screenshots/onboarding_alert.png" style="width: 50%" />
-&nbsp;
-<img src="./Headlines/Screenshots/home.png" style="width: 50%" />
-&nbsp;
-<img src="./Headlines/Screenshots/favourites.png" style="width: 50%" />
-&nbsp;
-<img src="./Headlines/Screenshots/error_alert.png" style="width: 50%" />
-&npsp;
+## Screenshots
+
+<img src="./Headlines/Screenshots/onboarding_alert.png" width=20% height=20%/> <img src="./Headlines/Screenshots/home.png" width=20% height=20%/> <img src="./Headlines/Screenshots/favourites.png" width=20% height=20%/> <img src="./Headlines/Screenshots/error_alert.png" width=20% height=20%/>
