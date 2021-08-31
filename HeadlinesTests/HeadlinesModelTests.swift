@@ -76,7 +76,7 @@ Huawei finance chief faces setback in fight against US extradition
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
-    XCTAssertEqual(model.allArticles.first, model.currentArticle)
+    XCTAssertEqual(model.allArticles.first, model.currentArticle?.article)
   }
 
   func test_model_current_article_updates_after_swipe_left() throws {
@@ -86,7 +86,7 @@ Huawei finance chief faces setback in fight against US extradition
     }
     wait(for: [expect], timeout: 10)
     model.didSwipeArticleLeft()
-    XCTAssertEqual(model.allArticles[1], model.currentArticle)
+    XCTAssertEqual(model.allArticles[1], model.currentArticle?.article)
   }
 
   func test_model_current_article_updates_after_swipe_right() throws {
@@ -98,7 +98,7 @@ Huawei finance chief faces setback in fight against US extradition
 
     model.didSwipeArticleLeft()
     model.didSwipeArticleRight()
-    XCTAssertEqual(model.allArticles[0], model.currentArticle)
+    XCTAssertEqual(model.allArticles[0], model.currentArticle?.article)
   }
 
   func test_toggle_article_is_favourited_in_storage() throws {

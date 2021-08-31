@@ -18,8 +18,11 @@ final class HeadlinesModel: ObservableObject {
 
   @Published var showAlert = false
 
-  var favouritedArticles: [Article] {
-    allArticles.filter { $0.isFavourite }
+  var favouritedArticles: [ArticleReader] {
+    allArticles
+      .map { ArticleReader(article: $0,
+                           networkService: services.networkService) }
+      .filter { $0.isFavourite }
   }
 
   var numberOfArticles: Int {
@@ -30,11 +33,12 @@ final class HeadlinesModel: ObservableObject {
     favouritedArticles.count
   }
 
-  var currentArticle: Article? {
+  var currentArticle: ArticleReader? {
     guard allArticles.indices.contains(currentIndex) else {
       return nil
     }
-    return allArticles[currentIndex]
+    return ArticleReader(article: allArticles[currentIndex],
+                         networkService: services.networkService)
   }
 
   @Published(initialValue: 0) var currentIndex
@@ -45,7 +49,8 @@ final class HeadlinesModel: ObservableObject {
   }
 
   func persistAllArticles(_ completion: (() -> Void)?) {
-    services.storageService.persistAllArticlesToStorage(allArticles, { [weak self] error in
+    services.storageService.persistAllArticlesToStorage(allArticles,
+                                                        { [weak self] error in
       DispatchQueue.main.async {
         self?.error = error
         completion?()

@@ -117,9 +117,11 @@ class ArticleStorageServiceTests: XCTestCase {
   func test_favouriting_updates_delegate() throws {
     var article = MockArticle.articleOne
     storageService.persistAllArticlesToStorage([article], nil)
-    let expect = XCTestExpectation(description: "Articles favorited")
+    let expect = XCTestExpectation(description: "Articles favourited")
     storageService.retrieveAllArticlesFromStorage()
-    XCTAssertFalse(delegate.allArticles[0].isFavourite)
+    var delegateReader = ArticleReader(article: delegate.allArticles[0],
+                                       networkService: MockNetworkService())
+    XCTAssertFalse(delegateReader.isFavourite)
     var receivedError: HeadlinesError?
     storageService
       .toggleArticleIsFavouritedInStorage(&article) { error in
@@ -129,6 +131,8 @@ class ArticleStorageServiceTests: XCTestCase {
     expect.fulfill()
     wait(for: [expect], timeout: 10)
     XCTAssertNil(receivedError)
-    XCTAssert(delegate.allArticles[0].isFavourite)
+    delegateReader = ArticleReader(article: delegate.allArticles[0],
+                                   networkService: MockNetworkService())
+    XCTAssert(delegateReader.isFavourite)
   }
 }

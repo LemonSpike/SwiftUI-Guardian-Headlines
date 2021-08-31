@@ -90,10 +90,6 @@ extension HeadlinesModel {
 
   private func cacheAllArticles(_ articles: [Article],
                                 _ completion: (() -> Void)?) {
-    articles.forEach { [weak self] article in
-      let modelNetwork = self?.services.networkService
-      article.networkService = modelNetwork ?? URLSession.shared
-    }
     allArticles = articles
     persistAllArticles(completion)
   }

@@ -25,12 +25,18 @@ protocol StorageServiceDelegate: AnyObject {
   func fetchArticles(_ completion: (() -> Void)?)
 }
 
+let realmQueue = DispatchQueue(label: "headlines.serial.queue")
+
 final class ArticleStorageService: StorageService {
 
-  private let realm: Realm?
+  private var realm: Realm?
+  private var realmStorageQueue: DispatchQueue
 
-  init(realm: Realm? = try? Realm()) {
-    self.realm = realm
+  init(realm: Realm?, realmStorageQueue: DispatchQueue = realmQueue) {
+    self.realmStorageQueue = realmStorageQueue
+    realmQueue.sync {
+      self.realm = realm
+    }
   }
 
   weak var delegate: StorageServiceDelegate?
@@ -39,16 +45,18 @@ final class ArticleStorageService: StorageService {
     guard let delegate = delegate, delegate.allArticles.isEmpty else {
       return
     }
-    DispatchQueue.global().sync {
-      guard let realm = realm else { return }
-      delegate.allArticles = Array(realm.objects(Article.self))
+    var realmObjects: [Article] = []
+    realmStorageQueue.sync { [weak self] in
+      guard let realm = self?.realm else { return }
+      realmObjects = Array(realm.objects(Article.self))
     }
+    delegate.allArticles = realmObjects
   }
 
   func persistAllArticlesToStorage(_ articles: [Article],
                                    _ completion: ((HeadlinesError?) -> Void)?) {
-    DispatchQueue.global().sync {
-      guard let realm = realm else {
+    realmStorageQueue.sync { [weak self] in
+      guard let realm = self?.realm else {
         completion?(.realmInstanceCreationFailed)
         return
       }
@@ -68,8 +76,8 @@ final class ArticleStorageService: StorageService {
                                           _ completion:
                                             ((HeadlinesError?) -> Void)? = nil)
   {
-    DispatchQueue.global().sync {
-      guard let realm = realm else {
+    realmStorageQueue.sync { [weak self, article] in
+      guard let realm = self?.realm else {
         completion?(.realmInstanceCreationFailed)
         return
       }

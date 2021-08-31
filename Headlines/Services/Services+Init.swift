@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import RealmSwift
 
 extension HeadlineServices {
   convenience init() {
+    var realm: Realm?
+    realmQueue.sync {
+      realm = try? Realm(queue: realmQueue)
+    }
     self.init(networkService: URLSession.shared,
-              storageService: ArticleStorageService())
+              storageService: ArticleStorageService(realm: realm))
   }
 }

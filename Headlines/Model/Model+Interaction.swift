@@ -47,14 +47,14 @@ extension HeadlinesModel: ArticleSelection {
   func didSelectFavouritedArticle(atIndex index: Int) {
     guard favouritedArticles.indices.contains(index) else { return }
     guard let index = allArticles
-            .firstIndex(of: favouritedArticles[index]) else { return }
+            .firstIndex(of: favouritedArticles[index].article) else { return }
     currentIndex = index
   }
 
   func didDeselectFavouritedArticle(atIndex index: Int) {
     guard favouritedArticles.indices.contains(index) else { return }
     guard let index = allArticles
-            .firstIndex(of: favouritedArticles[index]) else { return }
+            .firstIndex(of: favouritedArticles[index].article) else { return }
     services.storageService
       .toggleArticleIsFavouritedInStorage(&allArticles[index], nil)
   }
