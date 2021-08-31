@@ -59,7 +59,12 @@ class HeadlinesUITests: XCTestCase {
     XCTAssert(alert.waitForExistence(timeout: 5))
 
     let predicate = NSPredicate(format: "label CONTAINS[c] %@",
-                                "Swipe ⬅️ for the next article.\nSwipe ➡️ for the previous article.\nFavorite articles with the ⭐️ icon.\nView your Favourites with the Favourites button.")
+                                """
+                                Swipe ⬅️ for the next article.
+                                Swipe ➡️ for the previous article.
+                                Favorite articles with the ⭐️ icon.
+                                View your Favourites with the Favourites button.
+                                """)
     XCTAssert(alert.staticTexts.containing(predicate).count > 0)
     alert.buttons["Ok"].tap()
   }

@@ -29,13 +29,21 @@ let realmQueue = DispatchQueue(label: "headlines.serial.queue")
 
 final class ArticleStorageService: StorageService {
 
-  private var realm: Realm?
+  var realm: Realm?
   private var realmStorageQueue: DispatchQueue
+  private let realmInMemoryId = "HeadlinesInMemoryRealm"
 
-  init(realm: Realm?, realmStorageQueue: DispatchQueue = realmQueue) {
+  init(realmMode: RealmMode = .persisted, realmStorageQueue: DispatchQueue = realmQueue) {
     self.realmStorageQueue = realmStorageQueue
-    realmQueue.sync {
-      self.realm = realm
+    realmStorageQueue.sync {
+      switch realmMode {
+        case .inMemory:
+          self.realm = try?
+            Realm(configuration: .init(inMemoryIdentifier: realmInMemoryId),
+                  queue: realmStorageQueue)
+        case .persisted:
+          self.realm = try? Realm(queue: realmStorageQueue)
+      }
     }
   }
 

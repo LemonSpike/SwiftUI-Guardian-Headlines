@@ -12,25 +12,28 @@ import RealmSwift
 class ArticleStorageServiceTests: XCTestCase {
 
   var delegate: MockStorageDelegate = .init()
-  var storageService: ArticleStorageService = .init(realm: nil)
+  var storageService: ArticleStorageService = .init(realmMode: .inMemory)
   var realm: Realm?
+  let realmStorageQueue = realmQueue
 
   override func setUpWithError() throws {
-    realm = try Realm(configuration:
-                        .init(inMemoryIdentifier: "HeadlinesInMemoryRealm"))
-    storageService = ArticleStorageService(realm: realm)
+    storageService = ArticleStorageService(realmMode: .inMemory,
+                                           realmStorageQueue: realmStorageQueue)
+    realm = storageService.realm
     delegate = MockStorageDelegate()
     storageService.delegate = delegate
   }
 
   override func tearDownWithError() throws {
-    try realm?.write {
-      realm?.deleteAll()
+    try realmStorageQueue.sync {
+      try realm?.write {
+        realm?.deleteAll()
+      }
     }
   }
 
   func test_persist_fails_with_invalid_realm_instance() throws {
-    storageService = .init(realm: nil)
+    storageService.realm = nil
     let expect = XCTestExpectation(description: "Articles persisted")
     var receivedError: HeadlinesError?
     storageService
@@ -51,7 +54,7 @@ class ArticleStorageServiceTests: XCTestCase {
   }
 
   func test_retrieve_fails_with_invalid_realm_instance() throws {
-    storageService = .init(realm: nil)
+    storageService.realm = nil
     storageService.retrieveAllArticlesFromStorage()
     XCTAssertEqual(delegate.allArticles, [])
   }
@@ -59,11 +62,13 @@ class ArticleStorageServiceTests: XCTestCase {
   func test_persist_updates_realm() throws {
     storageService.persistAllArticlesToStorage([MockArticle.articleOne,
                                                 MockArticle.articleTwo], nil)
-    XCTAssertEqual(realm?.objects(Article.self).count, 2)
-    XCTAssertEqual(MockArticle.articleOne.headline,
-                   realm?.objects(Article.self)[0].headline)
-    XCTAssertEqual(MockArticle.articleTwo.headline,
-                   realm?.objects(Article.self)[1].headline)
+    realmStorageQueue.sync {
+      XCTAssertEqual(realm?.objects(Article.self).count, 2)
+      XCTAssertEqual(MockArticle.articleOne.headline,
+                     realm?.objects(Article.self)[0].headline)
+      XCTAssertEqual(MockArticle.articleTwo.headline,
+                     realm?.objects(Article.self)[1].headline)
+    }
   }
 
   func test_retrieve_updates_delegate() throws {
@@ -72,10 +77,13 @@ class ArticleStorageServiceTests: XCTestCase {
     storageService.retrieveAllArticlesFromStorage()
 
     XCTAssertEqual(delegate.allArticles.count, 2)
-    XCTAssertEqual(MockArticle.articleOne.headline,
-                   delegate.allArticles[0].headline)
-    XCTAssertEqual(MockArticle.articleTwo.headline,
-                   delegate.allArticles[1].headline)
+
+    realmStorageQueue.sync {
+      XCTAssertEqual(MockArticle.articleOne.headline,
+                     delegate.allArticles[0].headline)
+      XCTAssertEqual(MockArticle.articleTwo.headline,
+                     delegate.allArticles[1].headline)
+    }
   }
 
   func test_performance_of_persist() throws {
@@ -94,7 +102,7 @@ class ArticleStorageServiceTests: XCTestCase {
   }
 
   func test_favouriting_fails_with_invalid_realm_instance() throws {
-    storageService = .init(realm: nil)
+    storageService.realm = nil
     var article = MockArticle.articleOne
     let expect = XCTestExpectation(description: "Articles persisted")
     var receivedError: HeadlinesError?
