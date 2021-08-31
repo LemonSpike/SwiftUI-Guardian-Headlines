@@ -2,7 +2,7 @@
 //  ArticlesView.swift
 //  Headlines
 //
-//  Created by Pranav Kasetti on 27/08/2021.
+//  Created by Pranav Kasetti on 31/08/2021.
 //
 
 import SwiftUI
@@ -10,14 +10,13 @@ import SwiftUI
 struct ArticlesView: View {
 
   @ObservedObject var model: HeadlinesModel
-  @State var presentingFavourites = false
 
-  private func content() -> some View {
-    return ScrollView(.vertical, showsIndicators: true) {
+  var body: some View {
+    ScrollView(.vertical, showsIndicators: true) {
       VStack(alignment: .leading) {
         ZStack(alignment: .bottom) {
           if let data = model
-              .currentArticle?.imageData, let image = UIImage(data: data) {
+              .currentArticle?.imageData(), let image = UIImage(data: data) {
             Image(uiImage: image)
               .resizable()
               .scaledToFit()
@@ -62,44 +61,6 @@ struct ArticlesView: View {
     .navigationTitle("Headlines 🗞")
     .navigationViewStyle(DoubleColumnNavigationViewStyle())
   }
-
-  var body: some View {
-    NavigationView {
-      if (model.currentArticle != nil) {
-        content()
-      } else {
-        ProgressView()
-      }
-    }
-    .toolbar(content: {
-      ToolbarItemGroup(placement: .bottomBar) {
-        if model.currentArticle?.isFavourite == true {
-          Image(systemName: "star.fill")
-            .foregroundColor(.accentColor)
-            .onTapGesture {
-              model.toggleFavourite()
-            }
-            .accessibility(identifier: Constants.articleStarFillIconId)
-        } else {
-          Image(systemName: "star")
-            .foregroundColor(.accentColor)
-            .onTapGesture {
-              model.toggleFavourite()
-            }
-            .accessibility(identifier: Constants.articleStarIconId)
-        }
-        Spacer()
-        Button("Favourites") {
-          presentingFavourites.toggle()
-        }.font(.title2)
-        .foregroundColor(.accentColor)
-      }
-    })
-    .sheet(isPresented: $presentingFavourites) {
-      FavouritesView(model: model,
-                     isDisplayed: $presentingFavourites)
-    }
-  }
 }
 
 // This macros is to exclude previews from UI test code coverage reports.
@@ -116,7 +77,7 @@ struct ArticlesView_Previews: PreviewProvider {
     Group {
       ArticlesView(model: model)
         .colorScheme(.light)
-        .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
+        .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
       ArticlesView(model: model)
         .colorScheme(.dark)
         .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro"))

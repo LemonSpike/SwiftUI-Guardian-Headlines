@@ -18,7 +18,7 @@ struct HeadlinesApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ArticlesView(model: model)
+      ArticlesContainerView(model: model)
     }
   }
 }
