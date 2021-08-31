@@ -19,7 +19,7 @@ enum Strings {
   static let errorAlertMessage = "Please try again later."
   static let errorAlertOk = "Ok"
   static let favourites = "Favourites"
-  static let favouritesScreenTitle = "Favourite Articles ⭐️"
+  static let favouritesScreenTitle = "Favourite Articles"
   static let buttonDismiss = "Dismiss"
   static let empty = ""
 }

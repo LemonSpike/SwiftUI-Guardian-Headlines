@@ -10,6 +10,7 @@ import SwiftUI
 struct ArticlesView: View {
 
   @ObservedObject var model: HeadlinesModel
+  @State var offset: CGFloat = 0
 
   var body: some View {
     ScrollView(.vertical, showsIndicators: true) {
@@ -41,6 +42,9 @@ struct ArticlesView: View {
       .padding()
       .gesture(
         DragGesture(coordinateSpace: .local)
+          .onChanged { value in
+            offset = value.translation.width
+          }
           .onEnded { gesture in
             let translation = gesture.translation
             if translation.width > 20 {
@@ -48,12 +52,15 @@ struct ArticlesView: View {
             } else if translation.width < -20 {
               model.didSwipeArticleLeft()
             }
+            offset = 0
           }
       )
+      .offset(x: offset)
     }
     .animation(.spring())
-    .navigationTitle("Headlines 🗞")
+    .navigationBarHidden(true)
     .navigationViewStyle(DoubleColumnNavigationViewStyle())
+    .preferredColorScheme(.dark)
   }
 }
 
@@ -70,10 +77,8 @@ struct ArticlesView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       ArticlesView(model: model)
-        .colorScheme(.light)
         .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
       ArticlesView(model: model)
-        .colorScheme(.dark)
         .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro"))
     }
   }
