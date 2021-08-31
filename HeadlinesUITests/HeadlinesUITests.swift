@@ -9,7 +9,7 @@ import XCTest
 import OHHTTPStubs
 import OHHTTPStubsSwift
 
-class HeadlinesUITests: XCTestCase {
+final class HeadlinesUITests: XCTestCase {
 
   override func setUpWithError() throws {
     stub(condition: isHost("content.guardianapis.com")) { _ in

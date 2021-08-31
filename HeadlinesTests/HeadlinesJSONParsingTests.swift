@@ -8,7 +8,7 @@
 import XCTest
 @testable import Headlines
 
-class HeadlinesJSONParsingTests: XCTestCase {
+final class HeadlinesJSONParsingTests: XCTestCase {
 
   func test_article_decodes_from_json_correctly_and_strips_html() throws {
 

@@ -9,12 +9,12 @@ import XCTest
 import RealmSwift
 @testable import Headlines
 
-class ArticleStorageServiceTests: XCTestCase {
+final class ArticleStorageServiceTests: XCTestCase {
 
-  var mockModel: MockStorageDelegate = .init()
-  var storageService: ArticleStorageService = .init(realmMode: .inMemory)
-  var realm: Realm?
-  let realmStorageQueue = realmQueue
+  private var mockModel: MockStorageDelegate = .init()
+  private var storageService: ArticleStorageService = .init(realmMode: .inMemory)
+  private var realm: Realm?
+  private let realmStorageQueue = realmQueue
 
   override func setUpWithError() throws {
     storageService = ArticleStorageService(realmMode: .inMemory,

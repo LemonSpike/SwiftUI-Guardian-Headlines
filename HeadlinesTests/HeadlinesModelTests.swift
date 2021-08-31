@@ -8,25 +8,29 @@
 import XCTest
 @testable import Headlines
 
-class HeadlinesModelTests: XCTestCase {
+final class HeadlinesModelTests: XCTestCase {
 
-  var services: HeadlineServices = .mock
-  var model: HeadlinesModel = .init(services: .mock)
+  private var services: HeadlineServices = .mock
+  private var model: HeadlinesModel = .init(services: .mock)
 
   override func setUp() {
     services = .mock
     model = .init(services: services)
   }
 
-  func test_articles_are_downloaded_through_network_on_first_fetch() throws {
-    let storage = model.services.storageService as? MockStorageService
-    XCTAssertEqual(storage?.retrievedFromStorage, false)
-    XCTAssertEqual(model.allArticles, [])
-    let expect = expectation(description: "Article fetched from network")
+  func fetch_articles() {
+    let expect = expectation(description: "Articles fetched")
     services.setDelegate(delegate: model) {
       expect.fulfill()
     }
     wait(for: [expect], timeout: 10)
+  }
+
+  func test_articles_are_downloaded_through_network_on_first_fetch() throws {
+    let storage = model.services.storageService as? MockStorageService
+    XCTAssertEqual(storage?.retrievedFromStorage, false)
+    XCTAssertEqual(model.allArticles, [])
+    fetch_articles()
     XCTAssertEqual(storage?.retrievedFromStorage, false)
     XCTAssertEqual(model.allArticles.count, 2)
     XCTAssertEqual(model.allArticles[0].headline,
@@ -59,11 +63,7 @@ Huawei finance chief faces setback in fight against US extradition
 
   func test_model_number_of_articles() throws {
     XCTAssertEqual(model.allArticles.count, 0)
-    let expect = expectation(description: "Articles fetched")
-    services.setDelegate(delegate: model) {
-      expect.fulfill()
-    }
-    wait(for: [expect], timeout: 10)
+    fetch_articles()
     XCTAssert(model.allArticles.count > 0)
     XCTAssertEqual(model.allArticles.count, model.numberOfArticles)
   }
@@ -71,42 +71,25 @@ Huawei finance chief faces setback in fight against US extradition
   func test_model_current_article() throws {
     XCTAssertNil(model.currentArticle)
     XCTAssertEqual(model.allArticles, [])
-    let expect = expectation(description: "Articles fetched")
-    services.setDelegate(delegate: model) {
-      expect.fulfill()
-    }
-    wait(for: [expect], timeout: 10)
+    fetch_articles()
     XCTAssertEqual(model.allArticles.first, model.currentArticle?.article)
   }
 
   func test_model_current_article_updates_after_swipe_left() throws {
-    let expect = expectation(description: "Articles fetched")
-    services.setDelegate(delegate: model) {
-      expect.fulfill()
-    }
-    wait(for: [expect], timeout: 10)
+    fetch_articles()
     model.didSwipeArticleLeft()
     XCTAssertEqual(model.allArticles[1], model.currentArticle?.article)
   }
 
   func test_model_current_article_updates_after_swipe_right() throws {
-    let expect = expectation(description: "Articles fetched")
-    services.setDelegate(delegate: model) {
-      expect.fulfill()
-    }
-    wait(for: [expect], timeout: 10)
-
+    fetch_articles()
     model.didSwipeArticleLeft()
     model.didSwipeArticleRight()
     XCTAssertEqual(model.allArticles[0], model.currentArticle?.article)
   }
 
   func test_toggle_article_is_favourited_in_storage() throws {
-    let expect = expectation(description: "Articles fetched")
-    services.setDelegate(delegate: model) {
-      expect.fulfill()
-    }
-    wait(for: [expect], timeout: 10)
+    fetch_articles()
     model.toggleFavourite()
     XCTAssertEqual(model.currentArticle?.isFavourite, true)
   }
