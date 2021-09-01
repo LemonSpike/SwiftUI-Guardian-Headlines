@@ -16,6 +16,7 @@ final class MockStorageDelegate: StorageServiceDelegate {
     self.services = services
   }
   func fetchArticles(_ completion: (() -> Void)?) {
+    allArticles = [MockArticle.articleTwo]
     fetchedFromNetwork = true
     completion?()
   }
