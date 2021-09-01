@@ -73,7 +73,7 @@ final class ArticleStorageService: StorageService {
           realm.add(articles)
         }
         completion?(nil)
-      } catch let error {
+      } catch {
         completion?(.articlePersistenceFailed(error: error))
       }
     }
