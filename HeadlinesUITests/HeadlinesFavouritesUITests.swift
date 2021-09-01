@@ -6,8 +6,35 @@
 //
 
 import XCTest
+import OHHTTPStubs
+import OHHTTPStubsSwift
 
+// Note: Due to bugs with SwiftUI accessibility on iOS 14 and Xcode 12, the
+// toolbar detection tests may not work for some devices and Macs.
 class HeadlinesFavouritesUITests: XCTestCase {
+
+  override func setUpWithError() throws {
+    stub(condition: isHost("content.guardianapis.com")) { _ in
+      return HTTPStubsResponse(
+        fileAtPath: OHPathForFile("two_headline_stub.json", type(of: self))!,
+        statusCode: 200,
+        headers: ["Content-Type": "application/json"]
+      )
+    }
+
+    stub(condition: isHost("media.guim.co.uk")) { _ in
+      return HTTPStubsResponse(
+        fileAtPath: OHPathForFile("headline_one_img.jpg", type(of: self))!,
+        statusCode: 200,
+        headers: ["Content-Type": "image/jpeg"]
+      )
+    }
+    continueAfterFailure = false
+  }
+
+  override func tearDownWithError() throws {
+    HTTPStubs.removeAllStubs()
+  }
 
   func testFavouritingArticleUpdatesIcon() {
     let app = XCUIApplication(bundleIdentifier: "com.kasprasolutions.Headlines")

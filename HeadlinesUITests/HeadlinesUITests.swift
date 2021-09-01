@@ -9,6 +9,7 @@ import XCTest
 import OHHTTPStubs
 import OHHTTPStubsSwift
 
+// OHHTTPStubs may not work for some Macs due to version requirements.
 final class HeadlinesUITests: XCTestCase {
 
   override func setUpWithError() throws {
