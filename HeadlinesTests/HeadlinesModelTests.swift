@@ -66,8 +66,9 @@ Huawei finance chief faces setback in fight against US extradition
 
   func test_model_number_of_articles() throws {
     XCTAssertEqual(model.allArticles.count, 0)
+    XCTAssertEqual(model.allArticles.count, model.numberOfArticles)
     fetch_articles()
-    XCTAssert(model.allArticles.count > 0)
+    XCTAssertEqual(model.allArticles.count, 2)
     XCTAssertEqual(model.allArticles.count, model.numberOfArticles)
   }
 
@@ -101,5 +102,27 @@ Huawei finance chief faces setback in fight against US extradition
     XCTAssertFalse(model.showErrorAlert)
     model.error = HeadlinesError.emptyPayload
     XCTAssert(model.showErrorAlert)
+    XCTAssertFalse(model.showOnboardingAlert)
+  }
+
+  func test_fetch_completion_handles_error_without_onboarding_alert() throws {
+    let expect = expectation(description: "Articles fetched")
+    services.setDelegate(delegate: model) { [weak self] in
+      self?.model.error = .emptyPayload
+      self?.model.fetchCompletionHandler()
+      expect.fulfill()
+    }
+    wait(for: [expect], timeout: 10)
+    XCTAssertFalse(model.showOnboardingAlert)
+  }
+
+  func test_fetch_completion_handler_toggles_show_onboarding_alert() throws {
+    let expect = expectation(description: "Articles fetched")
+    services.setDelegate(delegate: model) { [weak self] in
+      self?.model.fetchCompletionHandler()
+      expect.fulfill()
+    }
+    wait(for: [expect], timeout: 10)
+    XCTAssert(model.showOnboardingAlert)
   }
 }

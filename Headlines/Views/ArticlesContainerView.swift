@@ -34,30 +34,28 @@ struct ArticlesContainerView: View {
       }
     }
     .preferredColorScheme(.dark)
-    .toolbar(content: {
+    .toolbar {
       ToolbarItemGroup(placement: .bottomBar) {
-        if model.currentArticle?.isFavourite == true {
-          Image(systemName: Constants.articleStarFillIconName)
+        let isFav = model.currentArticle?.isFavourite == true
+        Button {
+          model.toggleFavourite()
+        } label: {
+          Image(systemName: isFav ? Constants.articleStarFillIconName :
+                  Constants.articleStarIconName)
             .foregroundColor(.accentColor)
-            .onTapGesture {
-              model.toggleFavourite()
-            }
-            .accessibility(identifier: Constants.articleStarFillIconId)
-        } else {
-          Image(systemName: Constants.articleStarIconName)
-            .foregroundColor(.accentColor)
-            .onTapGesture {
-              model.toggleFavourite()
-            }
-            .accessibility(identifier: Constants.articleStarIconId)
         }
+        .accessibilityElement()
+        .accessibility(identifier: isFav ? Constants.articleStarFillIconId :
+                        Constants.articleStarIconId)
         Spacer()
         Button(Strings.favourites) {
           presentingFavourites.toggle()
-        }.font(.title2)
+        }
+        .font(.title2)
         .foregroundColor(.accentColor)
+        .accessibilityElement()
       }
-    })
+    }
     .fullScreenCover(isPresented: $presentingFavourites) {
       FavouritesView(model: model,
                      isDisplayed: $presentingFavourites)
