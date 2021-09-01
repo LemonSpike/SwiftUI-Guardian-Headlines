@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct URLs {
+enum URLs {
   static let articleBaseURL = "https://content.guardianapis.com"
   static let articleSearchPath = "/search"
   static let articleShowFieldsParam = "show-fields"
