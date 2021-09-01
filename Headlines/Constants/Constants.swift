@@ -8,8 +8,9 @@
 import Foundation
 
 struct Constants {
-  // Please contact me for the valid API Key.
-  static let APIKey = ""
+  // Even though usually I wouldn't include sensitive authentication
+  // details, we need the API Key to run the app and the tests.
+  static let APIKey = "d8bf8a4a-af1d-4dc9-b4fb-933ffc386c56"
 
   static let articleImageId = "articleImage"
   static let articleBodyId = "articleBody"
