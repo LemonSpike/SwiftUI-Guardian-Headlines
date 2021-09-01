@@ -12,10 +12,7 @@ struct HeadlinesApp: App {
   @StateObject var model: HeadlinesModel = {
     let services = HeadlineServices()
     var model = HeadlinesModel(services: services)
-    services.setDelegate(delegate: model, {
-      guard !model.showErrorAlert else { return }
-      model.showOnboardingAlert = true
-    })
+    services.setDelegate(delegate: model, model.fetchCompletionHandler)
     return model
   }()
 

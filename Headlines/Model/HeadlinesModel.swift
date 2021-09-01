@@ -60,4 +60,9 @@ final class HeadlinesModel: ObservableObject {
   }
 }
 
-extension HeadlinesModel: StorageServiceDelegate { }
+extension HeadlinesModel: StorageServiceDelegate {
+  func fetchCompletionHandler() {
+    guard !showErrorAlert else { return }
+    showOnboardingAlert = true
+  }
+}
