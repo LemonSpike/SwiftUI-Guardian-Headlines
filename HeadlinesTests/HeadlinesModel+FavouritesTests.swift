@@ -1,15 +1,14 @@
 //
-//  HeadlinesModel_FavouritesTests.swift
+//  HeadlinesModel+FavouritesTests.swift
 //  HeadlinesTests
 //
 //  Created by Pranav Kasetti on 27/08/2021.
 //
 
-
 import XCTest
 @testable import Headlines
 
-final class HeadlinesModel_FavouritesTests: XCTestCase {
+final class HeadlinesModelFavouritesTests: XCTestCase {
 
   private var services: HeadlineServices = .mock
   private var model: HeadlinesModel = .init(services: .mock)

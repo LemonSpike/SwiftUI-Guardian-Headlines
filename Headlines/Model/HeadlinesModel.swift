@@ -17,7 +17,6 @@ final class HeadlinesModel: ObservableObject {
   }
 
   @Published var showErrorAlert = false
-
   @Published var showOnboardingAlert = false
 
   var favouritedArticles: [ArticleReader] {

@@ -29,8 +29,11 @@ final class HeadlinesModelTests: XCTestCase {
   func test_articles_are_downloaded_through_network_on_first_fetch() throws {
     let storage = model.services.storageService as? MockStorageService
     XCTAssertEqual(storage?.retrievedFromStorage, false)
+    let network = model.services.networkService as? MockNetworkService
+    XCTAssertEqual(network?.fetchDataCalled, false)
     XCTAssertEqual(model.allArticles, [])
     fetch_articles()
+    XCTAssertEqual(network?.fetchDataCalled, true)
     XCTAssertEqual(storage?.retrievedFromStorage, false)
     XCTAssertEqual(model.allArticles.count, 2)
     XCTAssertEqual(model.allArticles[0].headline,

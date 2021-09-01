@@ -12,7 +12,8 @@ import RealmSwift
 final class ArticleStorageServiceTests: XCTestCase {
 
   private var mockModel: MockStorageDelegate = .init()
-  private var storageService: ArticleStorageService = .init(realmMode: .inMemory)
+  private var storageService: ArticleStorageService = .init(realmMode:
+                                                              .inMemory)
   private var realm: Realm?
   private let realmStorageQueue = realmQueue
 

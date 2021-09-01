@@ -9,9 +9,12 @@ import Foundation
 import Combine
 
 final class MockNetworkService: NetworkService {
+  var fetchDataCalled = false
+
   func fetchData(with request: URLRequest,
                  handler: @escaping (Data?, URLResponse?, Error?)
                   -> Void) -> AnyCancellable {
+    fetchDataCalled = true
     guard let method = request.httpMethod, let url = request.url else {
       handler(nil, nil, URLError(.badURL))
       return AnyCancellable {}
