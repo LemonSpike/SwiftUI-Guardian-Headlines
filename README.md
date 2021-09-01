@@ -21,6 +21,7 @@ testable, scalable and maintainable SwiftUI code.
 1. Add local notifications to remind users to open the app.
 2. Test and improve accessibility support.
 3. Add more performance tests for JSON parsing.
+4. Add more unit tests for networking layer, in addition to existing UI tests.
 
 ## Screenshots
 
